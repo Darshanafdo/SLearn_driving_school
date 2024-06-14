@@ -1,0 +1,104 @@
+.one_container{
+  display: flex;
+  width: 100%;
+  text-transform: capitalize;
+  transition: all .2s linear;
+  justify-content: center;
+  align-items: center;
+  padding:100px;
+  background: linear-gradient(90deg, #b8bfc1 60%, #d4e3ea 40.1%);
+}
+
+.one_container form{
+  padding:20px;
+  width:auto;
+  background: #023047;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  border-radius: 20px;
+  place-items: center;
+}
+
+.one_container form .row{
+  display: flex;
+  flex-wrap: wrap;
+  gap:15px;
+}
+
+.one_container form .row .col{
+  flex:1 1 250px;
+}
+
+.one_container form .row .col .title{
+  font-size: 20px;
+  color:#FFB703;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.inputBox span{
+  color:#8ECAE6;
+}
+
+.one_container form .row .col .inputBox{
+  margin:15px 0;
+}
+
+.one_container form .row .col .inputBox span{
+  margin-bottom: 10px;
+  display: block;
+}
+
+.one_container form .row .col .inputBox input{
+  width: 100%;
+  border:1px solid #8ECAE6;
+  padding:10px 15px;
+  font-size: 15px;
+  text-transform: none;
+  border-radius: 10px;
+}
+
+.one_container form .row .col .inputBox input:focus{
+  border:1px solid #8ECAE6;
+}
+
+.one_container form .row .col .flex{
+  display: flex;
+  gap:15px;
+}
+
+.one_container form .row .col .flex .inputBox{
+  margin-top: 5px;
+}
+
+.one_container form .row .col .inputBox img{
+  height: 34px;
+  margin-top: 5px;
+  filter: drop-shadow(0 0 2px #8ECAE6);
+}
+
+.one_container form .submit-btn{
+  width: 60%;
+  border-radius: 10px;
+  padding:12px;
+  font-size: 17px;
+  background: #FFB703;
+  color:black;
+  margin-top: 5px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  place-content: center;
+}
+
+.one_container form .submit-btn:hover{
+  background: #FFB703;
+}
+
+/* media query */
+
+@media(max-width:950px){
+  .one_container form .submit-btn{
+    width: 80%;
+  }
+}

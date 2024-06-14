@@ -1,0 +1,165 @@
+.container {
+  width: 100%;
+  font-family: sans-serif;
+}
+
+.frow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 20px;
+  grid-gap: 50px;
+}
+
+.fcol {
+  flex-basis: 30%;
+  overflow: hidden;
+  display: grid;
+}
+
+.card {
+  width: 100%;
+  height: 400px;
+  margin: auto;
+  perspective: 1000px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.inner-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 10px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
+
+}
+
+.card-front {
+  background-position: center;
+  background-color: #023047;
+  /* background-size: cover; */
+}
+
+.card-front img{
+  display: block;
+  width: 80%;
+  height: 200px;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  place-content: center;
+}
+
+.card-front span {
+  font-family: sans-serif;
+  display: inline-block;
+  width: 100px;
+  padding: 12px 0;
+  margin-top: 50px;
+  border-radius: 8px;
+  background: #FFB703;
+  color: #333;
+  transition: transform 0.8s;
+
+}
+
+.card-back {
+  background: #219EBC;
+  transform: rotateX(180deg);
+}
+
+.card:hover .inner-box {
+  transform: rotateX(-180deg);
+}
+
+.card:hover span {
+  transform: rotateY(40px);
+}
+
+p {
+  display: inline-block;
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.button {
+  border-radius: 6px;
+  background-color: #023047;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 15px;
+  width: 180px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 50px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: white;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+@media(max-width:992px) {
+  .card {
+    width: 100%;
+    height: 320px;
+  }
+  
+}
+
+@media(max-width:950px) {
+  .button {
+    width: 175px;
+    margin: 20px;
+  }
+}
+
+@media(max-width:890px){
+  .card-front span {
+    margin-top: 20px;
+  }
+}
+
+@media(max-width:589px){
+  .card-front img {
+    height: 70%;
+    
+  }
+}

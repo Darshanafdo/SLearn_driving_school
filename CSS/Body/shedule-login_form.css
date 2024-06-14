@@ -1,0 +1,110 @@
+body {
+  background: #e4e9f7;
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+}
+
+h1 {
+  margin-top: 40px;
+  font-weight: 800;
+  color: #023047;
+  text-align: center;
+}
+
+.border {
+  width: 300px;
+  height: 5px;
+  margin: 20px auto;
+  background: #ffb703;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.box {
+  width: 450px;
+  margin: 30px 10px;
+  background: #023047;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.box header {
+  color: #ffb703;
+  font-size: 25px;
+  text-align: center;
+  font-weight: 800;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 10px;
+}
+
+.box form .input input {
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.box form .input input:focus {
+  border: 3px solid #219ebc;
+}
+
+.box form .field {
+  display: flex;
+  margin-bottom: 10px;
+  flex-direction: column;
+  color: #8ecae6;
+  padding-bottom: 10px;
+}
+
+.btn {
+  height: 40px;
+  background: #219ebc;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 20px;
+  padding: 0px 10px;
+}
+
+.btn:hover {
+  opacity: 0.72;
+  background-color: #ffb703;
+  color: black;
+}
+
+.submit {
+  width: 100%;
+}
+
+/* responsive for schedule form */
+@media (max-width: 600px) {
+  .container {
+    min-width: 280px;
+  }
+
+  .box {
+    width: 100%;
+    margin: 30px 30px;
+  }
+
+  .form-box {
+    width: 200px;
+  }
+}

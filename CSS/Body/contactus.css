@@ -1,0 +1,635 @@
+/* Optional: Makes the sample page fill the window. */
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+body {
+  /* height: 100%; */
+  margin: 0;
+  padding: 0;
+  background: white;
+  font-family: montserrat;
+  width: 100%;
+}
+
+/* header */
+
+nav {
+  background: #023047;
+  height: 70px;
+}
+
+.toggle_btn {
+  color: white;
+  font-size: 30px;
+  float: right;
+  line-height: 70px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+
+nav .logo img {
+  position: absolute;
+  height: 50px;
+  left: 5px;
+  width: 100px;
+  margin-top: 6px;
+}
+
+nav ul {
+  float: right;
+  margin-right: 20px;
+}
+
+nav ul li {
+  display: inline-block;
+  line-height: 60px;
+  margin: o 5px;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 8px;
+}
+
+a.active,
+a:hover {
+  background: #8ecae6;
+  transition: 0.5s;
+}
+
+.action_btn {
+  background-color: orange;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  box-shadow: 0 5px #999;
+  cursor: pointer;
+}
+
+.action_btn:hover {
+  background-color: rgb(147, 97, 3);
+}
+
+.action_btn:active {
+  background-color: rgb(147, 97, 3);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/*dropdown menu*/
+
+.dropdown_menu {
+  position: absolute;
+  top: 60px;
+  height: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open {
+  height: 650px;
+  z-index: 3;
+}
+
+p.success {
+  background: #0cce05;
+  color: #be0909;
+  padding: 15px;
+  text-align: center;
+}
+
+p.error {
+  background: #ff0303;
+  color: #000000;
+  padding: 15px;
+  text-align: center;
+}
+
+.dropdown_menu li {
+  font-size: 25px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown_menu ul li a {
+  color: #fff;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 8px;
+}
+
+.dropdown_menu .active,
+a:hover {
+  background: #023047;
+  transition: 0.5s;
+}
+
+.dropdown_menu .action_btn {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  width: 70%;
+  place-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background-color: #023047;
+}
+
+/* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+#map {
+  height: 100%;
+  z-index: 1;
+  position: relative;
+  width: 70%;
+}
+
+h1 {
+  font-size: 50px;
+  text-align: center;
+  padding-top: 90px;
+  margin-left: -9px;
+  color: #ffb703;
+}
+
+/*Heading Shake Effect*/
+
+h1:hover {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+h6 {
+  text-align: center;
+  color: #ffb703;
+}
+
+#left {
+  float: left;
+  width: 50%;
+  height: 700px;
+}
+
+#right {
+  display: inline-block;
+  position: absolute;
+  /* float: right; */
+  width: 50%;
+  height: 700px;
+}
+
+#cleared {
+  clear: both;
+}
+
+ul {
+  list-style-type: none;
+}
+
+form {
+  max-width: 420px;
+  margin: 20px auto;
+}
+
+/*background: #13232f;*/
+
+.formbox {
+  background: transparent;
+  padding: 10px;
+  max-width: 400px;
+  margin: 10px auto;
+  border-radius: 1px;
+  box-shadow: 0 4px 10px 4px transparent;
+}
+
+form {
+  display: inline-block;
+}
+
+input.short {
+  width: 48%;
+  /*max-width: 48%; !* or whatever width you want. *!*/
+  color: grey;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 10px;
+  line-height: 22px;
+  background-color: transparent;
+  border: 2px solid #219ebc;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-right: 6px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+input:focus {
+  border-bottom: 2px solid #219ebc;
+}
+
+#map-overlap {
+  top: 10px;
+  left: 10px;
+  margin-top: -650px;
+  margin-left: 50px;
+  text-align: left;
+  font-size: 17px;
+  padding-top: 15px;
+  padding-left: 15px;
+  width: 205px;
+  height: 155px;
+  z-index: 10;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  position: relative;
+  background: rgb(30, 30, 40);
+  color: white;
+  z-index: 2;
+}
+
+#at {
+  color: #d59563;
+}
+
+span {
+  text-align: right;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 200;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: dimgrey;
+}
+
+.feedback-input {
+  color: grey;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 10px;
+  line-height: 22px;
+  background-color: transparent;
+  border: 2px solid #219ebc;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width: 99%;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+.feedback-input:focus {
+  border: 2px solid #8ecae6;
+}
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize: vertical;
+}
+
+[type="submit"] {
+  font-family: Helvetica, Arial, sans-serif;
+  width: 20%;
+  background: rgb(30, 30, 40);
+  border-radius: 8px;
+  cursor: pointer;
+  color: #219ebc;
+  font-size: 16px;
+  margin-left: 80%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: all 0.3s;
+  margin-top: -4px;
+  border: 2px solid #219ebc;
+  font-weight: 500;
+}
+
+[type="submit"]:hover {
+  background: #8ecae6;
+  color: rgb(30, 30, 40);
+  outline: 0 !important;
+}
+
+/* footer */
+
+.footer-distributed {
+  background: #023047;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 55px 50px;
+  display: flex;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.footer-distributed .footer-left {
+  width: 25%;
+}
+
+.footer-distributed h3 {
+  color: #ffb703;
+  font: normal 36px "Open Sans", cursive;
+  margin: 0;
+}
+
+.footer-distributed h3 span {
+  color: rgb(0, 0, 0);
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+  color: #ffffff;
+  margin: 20px 0 12px;
+  padding: 0;
+}
+
+.footer-distributed .footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  font-weight: 400;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+  color: #000000;
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+  width: 50%;
+}
+
+.footer-distributed .footer-center i {
+  background-color: #023047;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+  font-size: 17px;
+  line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 400;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+  color: rgb(7, 7, 7);
+  text-decoration: none;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "|";
+  font-weight: 300;
+  font-size: 20px;
+  left: 0;
+  color: #000000;
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+  width: 30%;
+}
+
+.footer-distributed .footer-company-about {
+  line-height: 20px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+  display: block;
+  color: #ffb703;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+  margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #000000;
+  text-align: center;
+  line-height: 35px;
+
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+@media (max-width: 1250px) {
+  nav ul li a {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 950px) {
+  nav .toggle_btn {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+  }
+}
+
+@media (max-width: 473px) {
+  .dropdown_menu .action_btn {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 311px) {
+  .toggle_btn {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 303px) {
+  .dropdown_menu .action_btn {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 280px) {
+  .dropdown_menu {
+    left: 2rem;
+    width: 80%;
+  }
+}
+
+/* footer  */
+@media (max-width: 880px) {
+  .footer-distributed {
+    font: bold 14px sans-serif;
+    display: block;
+  }
+
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .footer-distributed .footer-center {
+    display: grid;
+    width: 100%;
+    place-content: center;
+  }
+
+  .footer-distributed .footer-company-name {
+    display: block;
+  }
+
+  .footer-distributed .footer-center i {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 368px) {
+  .footer-distributed {
+    padding: 10px 10px;
+  }
+}
+
+/* 
+@media (max-width: 800px){
+    .footer-distributed{
+        display: inline-block;
+    }
+} */
+/* Responsive media query begin here */
+
+@media (max-width: 800px) {
+  #left,
+  #right {
+    display: block;
+    position: relative;
+    float: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .short {
+    min-width: 99%;
+  }
+}
+
+@media (max-width: 800px) {
+  #map-overlap {
+    text-align: center;
+    margin-left: -10px;
+    display: block;
+    width: 99%;
+  }
+}

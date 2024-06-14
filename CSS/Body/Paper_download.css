@@ -1,0 +1,132 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+body {
+    font-family: montserrat;
+    width: 100%;
+    height: 100vh;
+    background-image: url(cover.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    text-align: center;
+    color: #023047;
+}
+
+hr {
+    width: 200px;
+    height: 5px;
+    margin: 25px auto;
+    background: #FFB703;
+}
+
+p{
+    margin: 20px;
+}
+
+.file-content{
+    padding-left: 25px;
+    padding-bottom: 15px;
+}
+
+.wpfd-single-file {
+    flex-basis: 100%;
+    background: 0 0;
+    padding: 10px;
+    display: flex;
+    flex: auto;
+    flex-wrap: wrap;
+    z-index: 0;
+    text-align: center;
+}
+
+.details {
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    
+}
+
+.wpfd-single-file .buttons {
+    float: left;
+    display: flex;
+    width: 200px;
+    height: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    transition-property: unset !important;
+    transition-duration: unset !important;
+    transition-timing-function: unset !important;
+}
+
+.wpfd-single-file .buttons .download {
+    background: #023047;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    width: 166px;
+    font-size: 11px;
+    padding: 2px;
+    margin: 0;
+    box-shadow: 2px 2px 12px 5px #fff;
+    
+}
+.wpfd-single-file .buttons .download svg {
+    width: 15px;
+    height: 18px;
+    margin-left: 15px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    size: 11px;
+}
+
+.wpfd-single-file .buttons .preview {
+    background: #023047;
+    color: #fff;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    width: 166px;
+    font-size: 11px;
+    padding: 2px;
+    margin: 10px;
+    box-shadow: 2px 2px 12px 5px #fff;
+}
+
+.wpfd-single-file .buttons .preview svg {
+    width: 15px;
+    height: 18px;
+    margin-left: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.wpfd-single-file .buttons:hover {
+    cursor: pointer;
+}
+.wpfd-single-file .buttons a:hover {
+    background: #008184;
+}
+
+.wpfd-single-file .buttons .download:hover {
+    color: #FFB703;
+}
+
+.wpfd-single-file .buttons .preview:hover {
+    color: #FFB703;
+}
