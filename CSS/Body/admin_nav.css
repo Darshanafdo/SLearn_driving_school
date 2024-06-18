@@ -1,0 +1,63 @@
+.navi_box {
+  background: #707070;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+h1 {
+  color: black;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-bottom: 2rem;
+}
+.nav_box1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background: #4c76e9;
+  width: 5rem;
+  height: 2rem;
+  margin: 10px 10px 10px 10px;
+  justify-content: center;
+  text-align: center;
+}
+.nav_box2 {
+  display: grid;
+  background: #4c76e9;
+  width: auto;
+  height: auto;
+  margin: 10px 10px 10px 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.nav_box3 {
+  display: flex;
+  background: #4c76e9;
+  width: auto;
+  height: auto;
+  margin: 10px 10px 10px 10px;
+  justify-content: center;
+  text-align: center;
+}
+.nav_box4 {
+  display: flex;
+  background: #4c76e9;
+  width: 6rem;
+  height: 3rem;
+  margin: 10px 10px 10px 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.nav_box5 {
+  display: flex;
+  background: #4c76e9;
+  width: 5rem;
+  height: 2rem;
+  margin: 10px 10px 10px 10px;
+  justify-content: center;
+  text-align: center;
+}
