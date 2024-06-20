@@ -15,7 +15,7 @@ function sendWelcomeEmail($email, $username)
         $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
         $mail->SMTPAuth = true;
         $mail->Username = 'slearnschool@gmail.com'; // SMTP username
-        $mail->Password = ''; // SMTP password
+        $mail->Password = ' '; // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
