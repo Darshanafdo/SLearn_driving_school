@@ -1,123 +1,103 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+h1 {
+  margin-top: 0px;
+  font-weight: 800;
+  color: #023047;
+  text-align: center;
 }
 
-/* body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-} */
+.border {
+  width: 300px;
+  height: 5px;
+  margin: 20px auto;
+  background: #ffb703;
+}
 
 .container {
-  width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  min-height: 70vh;
 }
 
-.main {
-  position: relative;
+.box {
+  width: 450px;
+  margin: 30px 10px;
+  background: #023047;
   display: flex;
   flex-direction: column;
-  background-color: #023047;
-  max-height: 450px;
-  width: 400px;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: #023047 0px 30px 90px;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+    0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 24px;
+.box header {
+  color: #ffb703;
+  font-size: 25px;
+  text-align: center;
+  font-weight: 800;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 10px;
 }
 
-/*checkbox to switch from sign up to login*/
-
-#chk {
-  display: none;
-}
-
-/*Login*/
-
-.login {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.login label {
-  margin: 5% 0 5%;
-}
-
-label {
-  color: #fff;
-  font-size: 2rem;
-  justify-content: center;
-  display: flex;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.5s ease-in-out;
-}
-
-.input {
-  width: 100%;
+.box form .input input {
   height: 40px;
-  font-size: 1rem;
-  background: #e0dede;
-  padding: 10px;
-  margin-top: 15px;
-  border: none;
+  width: 100%;
+  font-size: 16px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
   outline: none;
-  border-radius: 4px;
 }
 
-/*Register*/
-
-.register {
-  background: #eee;
-  border-radius: 60% / 10%;
-  transition: 0.8s ease-in-out;
+.box form .input input:focus {
+  border: 3px solid #219ebc;
 }
 
-.register label {
-  color: #023047;
-  transform: scale(0.6);
+.box form .field {
+  display: flex;
+  margin-bottom: 10px;
+  flex-direction: column;
+  color: #8ecae6;
+  padding-bottom: 10px;
 }
 
-#chk:checked ~ .register {
-  transform: translateY(-68%);
-}
-
-#chk:checked ~ .register label {
-  transform: scale(1);
-  margin-bottom: 0.5rem;
-}
-
-#chk:checked ~ .login label {
-  transform: scale(0.6);
-}
-
-/*Button*/
-
-.form button {
-  width: 70%;
+.btn {
   height: 40px;
-  margin: 15px auto 10%;
+  background: #219ebc;
+  border: 0;
+  border-radius: 5px;
   color: #fff;
-  background: #03557e;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
+  font-size: 20px;
   cursor: pointer;
-  transition: 0.2s ease-in;
+  transition: all 0.3s;
+  margin-top: 20px;
+  padding: 0px 10px;
 }
 
-.form button:hover {
+.btn:hover {
+  opacity: 0.72;
   background-color: #ffb703;
+  color: black;
+}
+
+.submit {
+  width: 100%;
+}
+
+/* responsive for schedule form */
+@media (max-width: 600px) {
+  .container {
+    min-width: 280px;
+  }
+
+  .box {
+    width: 100%;
+    margin: 30px 30px;
+  }
+
+  .form-box {
+    width: 200px;
+  }
 }

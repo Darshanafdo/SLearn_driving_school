@@ -57,30 +57,42 @@
 
   <script src="../JS/Main/header.js"></script>
 
+
+
+
+  <h1>User Login form</h1>
+  <div class="border"></div>
+
   <div class="container">
-    <div class="main">
-      <input type="checkbox" id="chk" aria-hidden="true">
+    <div class="box">
+      <header>LOGIN FORM</header>
+      <form action="../PHP/login.php" method="post">
+        <div class="field input">
+          <label for="email">Username</label>
+          <input type="text" name="username" id="Student Name" autocomplete="off" required>
+        </div>
 
-      <div class="login">
-        <form action="#" method="post" class="form">
-          <label for="chk" aria-hidden="true">Log in</label>
-          <input class="input" type="email" name="email" placeholder="Email" required>
-          <input class="input" type="password" name="pswd" placeholder="Password" required>
-          <button name="Login">Log in</button>
-        </form>
-      </div>
+        <div class="field input">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" autocomplete="off" required>
+        </div>
 
-      <div class="register">
-        <form action="#" method="post" class="form">
-          <label for="chk" aria-hidden="true">Register</label>
-          <input class="input" type="text" name="uname" placeholder="Username" required>
-          <input class="input" type="email" name="email" placeholder="Email" required>
-          <input class="input" type="password" name="password" placeholder="Password" required>
-          <button name="Register">Register</button>
-        </form>
-      </div>
+        <div class="field">
+          <input type="submit" class="btn" name="submit" value="Login" required>
+
+          <p class="form-footer">If you don't have an account? <a href="S_registration.html">Registration here..</a>.
+          </p>
+        </div>
+
+      </form>
     </div>
   </div>
+
+
+
+
+
+
 
 
   <!-- footer eka -->
@@ -96,16 +108,6 @@
         <a href="About_us.html"> About </a>
 
         <a href="contact_us.html"> Contact us </a>
-
-
-
-        <!-- me comment tikath copy karala ganna. -->
-
-        <!-- <a href="#"> Login </a>
-            
-            <a href="#"> ...... </a>
-            
-            <a href="#"> ..... </a> -->
       </p>
 
       <p class="footer-company-name"> SLearn © 2023 </p>

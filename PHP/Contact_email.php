@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 
     $mail->isHTML(true);
     $mail->setFrom($email, $name);
-    $mail->addAddress('darshanafdo99@gmail.com');
+    $mail->addAddress("$email");
     $mail->Subject = ("$email ($subject)");
     $mail->Body = $message;
     $mail->send();

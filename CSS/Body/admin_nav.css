@@ -1,63 +1,42 @@
 .navi_box {
-  background: #707070;
+  margin: 5px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
+  /* margin: 1rem; */
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: larger;
+  align-items: center;
+  background: #023047;
+  border-radius: 10px;
+  width: 95%;
+  height: 70%;
+  margin: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 }
 h1 {
   color: black;
   text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  padding-bottom: 2rem;
+  font-family: "Poppins";
+  padding-bottom: 10px;
 }
 .nav_box1 {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  background: #4c76e9;
-  width: 5rem;
-  height: 2rem;
+  flex-direction: column;
+  background: #b3bacf;
+  border-radius: 10px;
+  width: 170px;
+  height: 120px;
+  padding: 10px;
   margin: 10px 10px 10px 10px;
   justify-content: center;
   text-align: center;
-}
-.nav_box2 {
-  display: grid;
-  background: #4c76e9;
-  width: auto;
-  height: auto;
-  margin: 10px 10px 10px 10px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.nav_box3 {
-  display: flex;
-  background: #4c76e9;
-  width: auto;
-  height: auto;
-  margin: 10px 10px 10px 10px;
-  justify-content: center;
-  text-align: center;
-}
-.nav_box4 {
-  display: flex;
-  background: #4c76e9;
-  width: 6rem;
-  height: 3rem;
-  margin: 10px 10px 10px 10px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.nav_box5 {
-  display: flex;
-  background: #4c76e9;
-  width: 5rem;
-  height: 2rem;
-  margin: 10px 10px 10px 10px;
-  justify-content: center;
-  text-align: center;
+  box-shadow: 5px 5px 5px rgb(171, 187, 192);
 }
