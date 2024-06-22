@@ -22,7 +22,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="../CSS/Main/header.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="..JS/">
+    <script src="../JS/Main/header.js"></script>
 
 </head>
 <nav class="nav">
@@ -48,39 +48,39 @@ $result = $conn->query($sql);
 </header>
 <br>
 
-<div class="dropdown_menu" id="dropdownMenu">
-    <ul class="nav-links">
-        <li><a class="active" href="#"><i class="uil uil-estate"></i> Home</a></li>
-        <li><a href="#"><i class="uil uil-comment-info"></i> About us</a></li>
-        <li><a href="#"><i class="uil uil-package"></i> Packages</a></li>
-        <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
-        <li><a href="#"><i class="uil uil-phone-pause"></i> Contact</a></li>
-        <li><a href="#"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-        <li><a href="#"><i class="uil uil-sign-in-alt"></i> Login </a></li>
-        <li><a class="action_btn" href="#">Get Started <i class="uil uil-forward"></i></a></li>
-    </ul>
-</div>
-
-
-
 <body>
+
+    <div class="dropdown_menu" id="dropdownMenu">
+        <ul class="nav-links">
+            <li><a class="active" href="#"><i class="uil uil-estate"></i> Home</a></li>
+            <li><a href="#"><i class="uil uil-comment-info"></i> About us</a></li>
+            <li><a href="#"><i class="uil uil-package"></i> Packages</a></li>
+            <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
+            <li><a href="#"><i class="uil uil-phone-pause"></i> Contact</a></li>
+            <li><a href="#"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+            <li><a href="#"><i class="uil uil-sign-in-alt"></i> Login </a></li>
+            <li><a class="action_btn" href="#">Get Started <i class="uil uil-forward"></i></a></li>
+        </ul>
+    </div>
     <h1>Light Vehicle Packages</h1>
-    <div class="packages">
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='package'>";
-                echo "<h2>" . $row['package_name'] . "</h2>";
-                echo "<h4>" . $row['description'] . "</h4>";
-                echo "<p>Price: Rs." . $row['price'] . "</p>";
-                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
-                echo "</div>";
+    <div>
+        <div class="packages">
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='package'>";
+                    echo "<h2>" . $row['package_name'] . "</h2>";
+                    echo "<h4>" . $row['description'] . "</h4>";
+                    echo "<p>Price: Rs." . $row['price'] . "</p>";
+                    echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
+                    echo "</div>";
+                }
+            } else {
+                echo "No packages available.";
             }
-        } else {
-            echo "No packages available.";
-        }
-        $conn->close();
-        ?>
+            $conn->close();
+            ?>
+        </div>
     </div>
 
 
@@ -158,7 +158,7 @@ $result = $conn->query($sql);
 
     <!-- methanin iwaraii  -->
 
-    <script src="../JS/Main/header.js"></script>
+
 </body>
 
 </html>

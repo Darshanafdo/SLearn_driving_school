@@ -1,9 +1,9 @@
-h1 {
+/* h1 {
   text-align: center;
   padding: 20px;
   background-color: #333;
   color: #fff;
-}
+} */
 
 form {
   width: 300px;
@@ -15,8 +15,7 @@ form {
 
 label,
 input,
-select,
-button {
+select {
   display: block;
   width: 100%;
   margin-bottom: 10px;
@@ -41,10 +40,12 @@ button:hover {
 }
 
 .package {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   background: #fff;
   padding: 20px;
   margin: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 200px;
   text-align: center;
 }
@@ -52,4 +53,10 @@ button:hover {
 .package img {
   max-width: 100%;
   height: auto;
+}
+
+.div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
