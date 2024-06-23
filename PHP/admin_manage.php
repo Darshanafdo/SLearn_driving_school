@@ -1,11 +1,13 @@
 <?php
+include("../pages/admin_nav_page.html");
+
 session_start();
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: admin_login.php");
+    header("Location: login.php");
     exit();
 }
 
-$conn = new mysqli('localhost', 'root', '', 'vehicle_packages');
+$conn = new mysqli('localhost', 'root', '', 'slearn');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -48,40 +50,40 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Admin Manage Packages</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/body/packages.css>
 </head>
 
 <body>
     <h1>Manage Packages</h1>
-    <div class="packages">
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<form action='admin_manage.php' method='post' enctype='multipart/form-data'>";
-                echo "<div class='package'>";
-                echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
-                echo "<label for='package_name'>Package Name:</label>";
-                echo "<input type='text' name='package_name' value='" . $row['package_name'] . "' required><br>";
-                echo "<label for='price'>Price:</label>";
-                echo "<input type='text' name='price' value='" . $row['price'] . "' required><br>";
-                echo "<label for='image'>Image:</label>";
-                echo "<input type='file' name='image'><br>";
-                echo "<label for='category'>Category:</label>";
-                echo "<select name='category'>";
-                echo "<option value='light'" . ($row['category'] == 'light' ? ' selected' : '') . ">Light</option>";
-                echo "<option value='heavy'" . ($row['category'] == 'heavy' ? ' selected' : '') . ">Heavy</option>";
-                echo "</select><br>";
-                echo "<button type='submit' name='update'>Update</button>";
-                echo "<button type='submit' name='delete'>Delete</button>";
-                echo "</div>";
-                echo "</form>";
-            }
-        } else {
-            echo "No packages available.";
+    <div class=" packages">
+    <?php
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<form action='admin_manage.php' method='post' enctype='multipart/form-data'>";
+            echo "<div class='package'>";
+            echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
+            echo "<label for='package_name'>Package Name:</label>";
+            echo "<input type='text' name='package_name' value='" . $row['package_name'] . "' required><br>";
+            echo "<label for='price'>Price:</label>";
+            echo "<input type='text' name='price' value='" . $row['price'] . "' required><br>";
+            echo "<label for='image'>Image:</label>";
+            echo "<input type='file' name='image'><br>";
+            echo "<label for='category'>Category:</label>";
+            echo "<select name='category'>";
+            echo "<option value='light'" . ($row['category'] == 'light' ? ' selected' : '') . ">Light</option>";
+            echo "<option value='heavy'" . ($row['category'] == 'heavy' ? ' selected' : '') . ">Heavy</option>";
+            echo "</select><br>";
+            echo "<button type='submit' name='update'>Update</button>";
+            echo "<button type='submit' name='delete'>Delete</button>";
+            echo "</div>";
+            echo "</form>";
         }
-        $conn->close();
-        ?>
+    } else {
+        echo "No packages available.";
+    }
+    $conn->close();
+    ?>
     </div>
-</body>
+    </body>
 
 </html>
