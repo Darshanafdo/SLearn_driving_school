@@ -1,7 +1,7 @@
 <?php
 // Database connection
 $host = 'localhost';
-$db = 'SLearn';
+$db = 'slearn';
 $user = 'root';  // Replace with your database username
 $pass = '';      // Replace with your database password
 

@@ -1,15 +1,4 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'vehicle_packages');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM packages WHERE category='heavy'";
-$result = $conn->query($sql);
-?>
-
-<?php
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -20,25 +9,28 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Heavy Vehicle Packages</title>
-    <link rel="stylesheet" href="../CSS/Body/packages.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>package category </title>
+
+    <!-- css links    -->
+    <link rel="stylesheet" href="../CSS/Body/package.css">
     <link rel="stylesheet" href="../CSS/Main/footer.css">
     <link rel="stylesheet" href="../CSS/Main/header.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="../JS/Main/header.js" defer></script>
 </head>
 
 <body>
     <header>
         <nav class="nav">
-
-            <div class="logo"><a href="header.html"><img src="../Images/Main/logo.png"></a>
+            <div class="logo"><a href="#"><img src="../Images/Main/logo.png"></a>
             </div>
 
             <ul class="nav-links">
@@ -53,30 +45,50 @@ $username = $_SESSION['username'];
                     </a></li>
                 <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
             </ul>
-
             <div class="toggle_btn" id="toggleButton">
                 <i class="fa-solid fa-bars" id="toggleIcon"></i>
             </div>
         </nav>
     </header>
-    <h1>Heavy Vehicle Packages</h1>
-    <div class="packages">
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='package'>";
-                echo "<h2>" . $row['package_name'] . "</h2>";
-                echo "<p>Price: Rs." . $row['price'] . "</p>";
-                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
-                echo "</div>";
-            }
-        } else {
-            echo "No packages available.";
-        }
-        $conn->close();
-        ?>
+    <br>
+
+    <div class="dropdown_menu" id="dropdownMenu">
+        <ul class="nav-links">
+            <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+            <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+            <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+            <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+            <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+            <li><a class="action_btn" href="#"></i>
+                    <?php echo 'Hi ';
+                    echo htmlspecialchars($username); ?>
+                </a></li>
+            <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
+        </ul>
     </div>
 
+    <h1> You can choose your package</h1>
+    <div class="border"></div>
+
+    <!-- package category  -->
+    <div class="packages">
+        <div class="vehicle_package">
+            <h2>Light Vehicle Driving License</h2>
+            <img class="image" src="../Images/Body/package/intdr-thumb.jpg" alt="image">
+            <br>
+            <button type="button"> <a href="../PHP/light_packages.php">Packages</a></button>
+        </div>
+
+        <div class="vehicle_package">
+            <h2>Heavy Vehicle Driving License</h2>
+            <img class="image" src="../Images/Body/package/intdr-thumb.jpg" alt="image">
+            <br>
+            <button type="button"> <a href="../PHP/heavy_packages.php">Packages</a></button>
+        </div>
+    </div>
+
+
+    <br>
     <!-- footer eka -->
     <footer class="footer-distributed">
 
@@ -136,6 +148,7 @@ $username = $_SESSION['username'];
         </div>
 
     </footer>
+
 </body>
 
 </html>

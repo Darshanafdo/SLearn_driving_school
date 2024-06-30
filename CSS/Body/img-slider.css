@@ -10,18 +10,18 @@
 
 @keyframes changeimage {
   0% {
-    background-image: url(/Images/Body/Home/images_for_slider/1.jpg);
+    background-image: url(../../Images/Body/Home/images_for_slider/1.jpg);
   }
   25% {
-    background-image: url(/Images/Body/Home/images_for_slider/2.jpg);
+    background-image: url(../../Images/Body/Home/images_for_slider/2.jpg);
   }
   50% {
-    background-image: url(/Images/Body/Home/images_for_slider/3.jpg);
+    background-image: url(../../Images/Body/Home/images_for_slider/3.jpg);
   }
   75% {
-    background-image: url(/Images/Body/Home/images_for_slider/4.jpg);
+    background-image: url(../../Images/Body/Home/images_for_slider/4.jpg);
   }
   100% {
-    background-image: url(/Images/Body/Home/images_for_slider/1.jpg);
+    background-image: url(../../Images/Body/Home/images_for_slider/1.jpg);
   }
 }

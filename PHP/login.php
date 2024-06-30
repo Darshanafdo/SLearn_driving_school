@@ -33,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Check if the user is an admin
             if ($user['username'] === 'admin') {
                 $_SESSION['is_admin'] = true;
-                header("Location: ../pages/admin_nav_page.html");  // Redirect to admin panel
+                header("Location: ./admin_nav_page.php");  // Redirect to admin panel
                 exit;
             } else {
                 $_SESSION['is_admin'] = false;
-                header("Location: ../pages/home.html");
+                header("Location: ./home.php");
                 // Redirect to user dashboard or perform other actions
             }
         } else {

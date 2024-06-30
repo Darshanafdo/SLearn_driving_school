@@ -9,6 +9,17 @@ $sql = "SELECT * FROM packages WHERE vehicle_type='light'";
 $result = $conn->query($sql);
 ?>
 
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+    exit();
+}
+
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,140 +36,148 @@ $result = $conn->query($sql);
     <script src="../JS/Main/header.js"></script>
 
 </head>
-<nav class="nav">
-
-    <div class="logo"><a href="header.html"><img src="../Images/Main/logo.png"></a>
-    </div>
-
-    <ul class="nav-links">
-        <li><a class="active" href="#"><i class="uil uil-estate"></i> Home</a></li>
-        <li><a href="#"><i class="uil uil-comment-info"></i> About us</a></li>
-        <li><a href="#"><i class="uil uil-package"></i> Packages</a></li>
-        <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
-        <li><a href="#"><i class="uil uil-phone-pause"></i> Contact</a></li>
-        <li><a href="#"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-        <li><a href="#"><i class="uil uil-sign-in-alt"></i> Login </a></li>
-        <li><a class="action_btn" href="#">Get Started <i class="uil uil-forward"></i></a></li>
-    </ul>
-
-    <div class="toggle_btn" id="toggleButton">
-        <i class="fa-solid fa-bars" id="toggleIcon"></i>
-    </div>
-</nav>
-</header>
-<br>
 
 <body>
 
-    <div class="dropdown_menu" id="dropdownMenu">
-        <ul class="nav-links">
-            <li><a class="active" href="#"><i class="uil uil-estate"></i> Home</a></li>
-            <li><a href="#"><i class="uil uil-comment-info"></i> About us</a></li>
-            <li><a href="#"><i class="uil uil-package"></i> Packages</a></li>
-            <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
-            <li><a href="#"><i class="uil uil-phone-pause"></i> Contact</a></li>
-            <li><a href="#"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-            <li><a href="#"><i class="uil uil-sign-in-alt"></i> Login </a></li>
-            <li><a class="action_btn" href="#">Get Started <i class="uil uil-forward"></i></a></li>
-        </ul>
-    </div>
-    <h1>Light Vehicle Packages</h1>
-    <div>
-        <div class="packages">
-            <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='package'>";
-                    echo "<h2>" . $row['package_name'] . "</h2>";
-                    echo "<h4>" . $row['description'] . "</h4>";
-                    echo "<p>Price: Rs." . $row['price'] . "</p>";
-                    echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
-                    echo "</div>";
-                }
-            } else {
-                echo "No packages available.";
-            }
-            $conn->close();
-            ?>
+    <header>
+        <nav class="nav">
+
+            <div class="logo"><a href="header.html"><img src="../Images/Main/logo.png"></a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+                <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+                <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+                <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+                <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+                <li><a class="action_btn" href="#"></i>
+                        <?php echo 'Hi ';
+                        echo htmlspecialchars($username); ?>
+                    </a></li>
+                <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
+            </ul>
+
+            <div class="toggle_btn" id="toggleButton">
+                <i class="fa-solid fa-bars" id="toggleIcon"></i>
+            </div>
+        </nav>
+    </header>
+    <br>
+
+    <body>
+
+        <div class="dropdown_menu" id="dropdownMenu">
+            <ul class="nav-links">
+                <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+                <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+                <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+                <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+                <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+                <li><a class="action_btn" href="#"></i>
+                        <?php echo 'Hi ';
+                        echo htmlspecialchars($username); ?>
+                    </a></li>
+                <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
+            </ul>
         </div>
-    </div>
+        <h1>Light Vehicle Packages</h1>
+        <div>
+            <div class="packages">
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='package'>";
+                        echo "<h2>" . $row['package_name'] . "</h2>";
+                        echo "<h4>" . $row['description'] . "</h4>";
+                        echo "<p>Price: Rs." . $row['price'] . "</p>";
+                        echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
+                        echo "</div>";
+                    }
+                } else {
+                    echo "No packages available.";
+                }
+                $conn->close();
+                ?>
+            </div>
+        </div>
 
 
 
 
 
-    <footer class="footer-distributed">
+        <footer class="footer-distributed">
 
-        <div class="footer-left">
+            <div class="footer-left">
 
-            <h3>SL<span>earn</span></h3>
+                <h3>SL<span>earn</span></h3>
 
-            <p class="footer-links">
-                <a href="#" class="link-1">Home</a>
+                <p class="footer-links">
+                    <a href="#" class="link-1">Home</a>
 
-                <a href="#"> About </a>
+                    <a href="#"> About </a>
 
-                <a href="#"> Contact us </a>
+                    <a href="#"> Contact us </a>
 
 
 
-                <!-- me comment tikath copy karala ganna. -->
+                    <!-- me comment tikath copy karala ganna. -->
 
-                <!-- <a href="#"> Login </a>
+                    <!-- <a href="#"> Login </a>
        
        <a href="#"> ...... </a>
        
        <a href="#"> ..... </a> -->
-            </p>
+                </p>
 
-            <p class="footer-company-name"> SLearn © 2023 </p>
-        </div>
-
-
-        <div class="footer-center">
-
-            <div>
-                <i class="fa fa-map-marker"></i>
-                <p><span> Sri Lanka College of Technology</span> Olcott Mawatha, Colombo - 10 </p>
+                <p class="footer-company-name"> SLearn © 2023 </p>
             </div>
 
-            <div>
-                <i class="fa fa-phone"></i>
-                <p>+947108528520</p>
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span> Sri Lanka College of Technology</span> Olcott Mawatha, Colombo - 10 </p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+947108528520</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:support@company.com">SLearnschool@gamil.com</a></p>
+                </div>
+
             </div>
 
-            <div>
-                <i class="fa fa-envelope"></i>
-                <p><a href="mailto:support@company.com">SLearnschool@gamil.com</a></p>
+
+            <div class="footer-right">
+
+                <p class="footer-company-about">
+                    <span>About the company</span>
+                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit,
+                    eu auctor lacus
+                    vehicula sit amet.
+                </p>
+
+                <div class="footer-icons">
+
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+
             </div>
 
-        </div>
+        </footer>
+
+        <!-- methanin iwaraii  -->
 
 
-        <div class="footer-right">
-
-            <p class="footer-company-about">
-                <span>About the company</span>
-                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit,
-                eu auctor lacus
-                vehicula sit amet.
-            </p>
-
-            <div class="footer-icons">
-
-                <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-
-        </div>
-
-    </footer>
-
-    <!-- methanin iwaraii  -->
-
-
-</body>
+    </body>
 
 </html>

@@ -1,15 +1,4 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'vehicle_packages');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM packages WHERE category='heavy'";
-$result = $conn->query($sql);
-?>
-
-<?php
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -25,20 +14,24 @@ $username = $_SESSION['username'];
 
 <head>
     <meta charset="UTF-8">
-    <title>Heavy Vehicle Packages</title>
-    <link rel="stylesheet" href="../CSS/Body/packages.css">
-    <link rel="stylesheet" href="../CSS/Main/footer.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Form</title>
     <link rel="stylesheet" href="../CSS/Main/header.css">
+    <link rel="stylesheet" href="../CSS/Main/footer.css">
+    <link rel="stylesheet" href="../CSS/Body/contactus.css">
+    <link rel="stylesheet" href="../JS/Body/contact.js">
+    <link rel="stylesheet" href="../JS/Main/header.js">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
 </head>
 
 <body>
     <header>
+
         <nav class="nav">
 
-            <div class="logo"><a href="header.html"><img src="../Images/Main/logo.png"></a>
+            <div class="logo"><a href="#"><img src="../Images/Main/logo.png"></a>
             </div>
 
             <ul class="nav-links">
@@ -54,30 +47,75 @@ $username = $_SESSION['username'];
                 <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
             </ul>
 
+
             <div class="toggle_btn" id="toggleButton">
                 <i class="fa-solid fa-bars" id="toggleIcon"></i>
             </div>
         </nav>
     </header>
-    <h1>Heavy Vehicle Packages</h1>
-    <div class="packages">
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='package'>";
-                echo "<h2>" . $row['package_name'] . "</h2>";
-                echo "<p>Price: Rs." . $row['price'] . "</p>";
-                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
-                echo "</div>";
-            }
-        } else {
-            echo "No packages available.";
-        }
-        $conn->close();
-        ?>
+    <br>
+
+    <div class="dropdown_menu" id="dropdownMenu">
+        <ul class="nav-links">
+            <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+            <li><a href="../Pages/home/H_About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+            <li><a href="Packages Details.html"><i class="uil uil-package"></i> Packages</a></li>
+            <li><a href="contact_us.html"><i class="uil uil-phone-pause"></i> Contact</a></li>
+            <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+            <li><a class="action_btn" href="#"></i>
+                    <?php echo 'Hi ';
+                    echo htmlspecialchars($username); ?>
+                </a></li>
+            <li><a class="action_btn" href="./logout.php">Logout <i class="uil uil-forward"></i></a></li>
+            </li>
+        </ul>
     </div>
 
-    <!-- footer eka -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="left">
+
+                <h1>Contact Us</h1>
+
+
+                <!-- php walin hoyaganna puluwan wenna status ekak danawa -->
+
+
+                <div class="formbox">
+                    <form action="Contact_email.php" method="post">
+                        <input name="name" type="text" class="short" placeholder="Name" onfocus="this.placeholder=''" onblur="this.placeholder='Name'" />
+
+                        <input name="email" type="text" class="short" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder='Email'" />
+
+                        <input name="subject" type="text" class="feedback-input" placeholder="Subject" onfocus="this.placeholder=''" onblur="this.placeholder='Subject'" />
+
+                        <textarea name="message" class="feedback-input" placeholder="Message" onfocus="this.placeholder=''" onblur="this.placeholder='Message'"></textarea>
+
+                        <input type="submit" name="submit" value="SEND" />
+                    </form>
+
+                    <h6>Thank You for join with us..</h6>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="right">
+            <div id="map">
+            </div>
+        </div>
+        <div id="cleared"></div>
+
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDts9C9iWNF83ExezBXJLIJ0g2dwoERg08&callback=initMap" async defer></script>
+    <br>
+
+    <!-- footer -->
+
     <footer class="footer-distributed">
 
         <div class="footer-left">
@@ -85,11 +123,12 @@ $username = $_SESSION['username'];
             <h3>SL<span>earn</span></h3>
 
             <p class="footer-links">
-                <a href="#" class="link-1">Home</a>
+                <a href="../index.html" class="link-1">Home</a>
 
                 <a href="#"> About </a>
 
-                <a href="#"> Contact us </a>
+                <a href=".contact_us.html"> Contact us </a>
+
             </p>
 
             <p class="footer-company-name"> SLearn © 2023 </p>
@@ -115,7 +154,6 @@ $username = $_SESSION['username'];
 
         </div>
 
-
         <div class="footer-right">
 
             <p class="footer-company-about">
@@ -136,6 +174,10 @@ $username = $_SESSION['username'];
         </div>
 
     </footer>
+
+
+    <script src="../JS/Body/contact.js"></script>
+    <script src="../JS/Main/header.js"></script>
 </body>
 
 </html>
