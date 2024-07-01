@@ -1,0 +1,9 @@
+CREATE TABLE packages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    package_name VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
+    price DECIMAL(10, 2) NOT NULL,
+    image LONGBLOB NOT NULL,
+    vehicle_type VARCHAR(50) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
