@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+  header("Location: index.php");
+  exit();
+}
+
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,14 +37,16 @@
       </div>
 
       <ul class="nav-links">
-        <li><a class="active" href="home.html"><i class="uil uil-estate"></i> Home</a></li>
-        <li><a href="About_us.html"><i class="uil uil-comment-info"></i> About us</a></li>
-        <li><a href="Packages Details.html"><i class="uil uil-package"></i> Packages</a></li>
-        <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
-        <li><a href="contact_us.html"><i class="uil uil-phone-pause"></i> Contact</a></li>
-        <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-        <li><a href="S_login.html"><i class="uil uil-sign-in-alt"></i> Login </a></li>
-        <li><a class="action_btn" href="S_login.html">Get Started <i class="uil uil-forward"></i></a></li>
+        <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+        <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+        <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+        <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+        <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+        <li><a class="action_btn" href="#"></i>
+            <?php echo 'Hi ';
+            echo htmlspecialchars($username); ?>
+          </a></li>
+        <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
       </ul>
 
       <div class="toggle_btn" id="toggleButton">
@@ -45,14 +58,16 @@
 
   <div class="dropdown_menu" id="dropdownMenu">
     <ul class="nav-links">
-      <li><a class="active" href="home.html"><i class="uil uil-estate"></i> Home</a></li>
-      <li><a href="About_us.html"><i class="uil uil-comment-info"></i> About us</a></li>
-      <li><a href="Packages Details.html"><i class="uil uil-package"></i> Packages</a></li>
-      <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
-      <li><a href="contact_us.html"><i class="uil uil-phone-pause"></i> Contact</a></li>
-      <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-      <li><a href="S_login.html"><i class="uil uil-sign-in-alt"></i> Login </a></li>
-      <li><a class="action_btn" href="S_login.html">Get Started <i class="uil uil-forward"></i></a></li>
+      <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+      <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+      <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+      <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+      <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+      <li><a class="action_btn" href="#"></i>
+          <?php echo 'Hi ';
+          echo htmlspecialchars($username); ?>
+        </a></li>
+      <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
     </ul>
   </div>
 
@@ -205,14 +220,14 @@
   <br>
   <center>
     <div class="pagination">
-      <a href="study_meterial_page_2.html">&laquo;</a>
-      <a href="study_meterial_page_1.html">1</a>
-      <a href="study_meterial_page_2.html">2</a>
-      <a class="active" href="study_meterial_page_3.html">3</a>
-      <a href="study_meterial_page_4.html">4</a>
-      <a href="study_meterial_page_5.html">5</a>
+      <a href="study_meterial_page_2.php">&laquo;</a>
+      <a href="study_meterial_page_1.php">1</a>
+      <a href="study_meterial_page_2.php">2</a>
+      <a class="active" href="study_meterial_page_3.php">3</a>
+      <a href="study_meterial_page_4.php">4</a>
+      <a href="study_meterial_page_5.php">5</a>
 
-      <a href="study_meterial_page_4.html">&raquo;</a>
+      <a href="study_meterial_page_4.php">&raquo;</a>
     </div>
   </center>
 

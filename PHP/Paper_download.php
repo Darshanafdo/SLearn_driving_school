@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+    exit();
+}
+
+$username = $_SESSION['username'];
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,14 +35,16 @@
             </div>
 
             <ul class="nav-links">
-                <li><a class="active" href="#"><i class="uil uil-estate"></i> Home</a></li>
-                <li><a href="#"><i class="uil uil-comment-info"></i> About us</a></li>
-                <li><a href="#"><i class="uil uil-package"></i> Packages</a></li>
-                <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
-                <li><a href="#"><i class="uil uil-phone-pause"></i> Contact</a></li>
-                <li><a href="#"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-                <li><a href="#"><i class="uil uil-sign-in-alt"></i> Login </a></li>
-                <li><a class="action_btn" href="#">Get Started <i class="uil uil-forward"></i></a></li>
+                <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+                <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+                <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+                <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+                <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+                <li><a class="action_btn" href="#"></i>
+                        <?php echo 'Hi ';
+                        echo htmlspecialchars($username); ?>
+                    </a></li>
+                <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
             </ul>
 
             <div class="toggle_btn" id="toggleButton">
@@ -41,14 +56,16 @@
 
     <div class="dropdown_menu open" id="dropdownMenu">
         <ul class="nav-links">
-            <li><a class="active" href="#"><i class="uil uil-estate"></i> Home</a></li>
-            <li><a href="#"><i class="uil uil-comment-info"></i> About us</a></li>
-            <li><a href="#"><i class="uil uil-package"></i> Packages</a></li>
-            <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
-            <li><a href="#"><i class="uil uil-phone-pause"></i> Contact</a></li>
-            <li><a href="#"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-            <li><a href="#"><i class="uil uil-sign-in-alt"></i> Login </a></li>
-            <li><a class="action_btn" href="#">Get Started <i class="uil uil-forward"></i></a></li>
+            <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+            <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+            <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+            <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+            <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+            <li><a class="action_btn" href="#"></i>
+                    <?php echo 'Hi ';
+                        echo htmlspecialchars($username); ?>
+                </a></li>
+            <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
         </ul>
     </div>
 

@@ -93,7 +93,7 @@
                                  training, we have options for everyone.
                                  Choose the package that suits you the best and kick-start your
                                  driving journey today!</P>
-                             <button class="button"><span><B><a href="../Pages/Packages Details.html">Our packages</a></B>
+                             <button class="button"><span><B><a href="./Our Packages.php">Our packages</a></B>
                                  </span></button>
                          </div>
                      </div>
@@ -112,7 +112,7 @@
                                  From expert guidance to state-of-the-art facilities,
                                  we provide everything you need for a successful driving
                                  journey. Explore our services and drive with confidence!</P>
-                             <button class="button"><span><B><a href="/Pages/About_us.html">our services</a></B> </span></button>
+                             <button class="button"><span><B><a href="./study_meterial_page_1.php">our services</a></B> </span></button>
                          </div>
                      </div>
                  </div>
@@ -130,7 +130,7 @@
                                  We understand your busy lifestyle, and
                                  that's why we offer convenient scheduling to fit your needs.
                                  Take control of your schedule and book your lessons now!</P>
-                             <button class="button"><span><B><a href="../Pages/study_meterial_page_1.html">schedule </a></B>
+                             <button class="button"><span><B><a href="./study_meterial_page_1.php">schedule </a></B>
                                  </span></button>
                          </div>
                      </div>

@@ -1,15 +1,4 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'vehicle_packages');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM packages WHERE category='heavy'";
-$result = $conn->query($sql);
-?>
-
-<?php
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -19,6 +8,19 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 ?>
+
+
+<?php
+$conn = new mysqli('localhost', 'root', '', 'slearn');
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM packages WHERE vehicle_type='heavy'";
+$result = $conn->query($sql);
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
