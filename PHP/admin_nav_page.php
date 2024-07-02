@@ -65,7 +65,7 @@ $username = $_SESSION['username'];
             <li><a href="#"><i class="uil uil-sort-amount-down"></i> Services</a></li>
             <li><a href="contact_us.html"><i class="uil uil-phone-pause"></i> Contact</a></li>
             <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-            <li><a class="action_btn" href="#"></i>
+            <li><a class="action_btn" href="./profile.php"></i>
                     <?php echo 'Hi ';
                     echo htmlspecialchars($username); ?>
                 </a></li>
