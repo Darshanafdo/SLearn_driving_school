@@ -9,20 +9,43 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 ?>
 
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $package_name = $_POST['package_name'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $vehicle_type = $_POST['vehicle_type'];
+    $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+
+    $conn = new mysqli('localhost', 'root', '', 'slearn');
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO packages (package_name,description, price, image, vehicle_type) VALUES ('$package_name','$description', '$price', '$image', '$vehicle_type')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New package added successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>Admin Package Insert</title>
+    <link rel="stylesheet" href="../CSS/Body/admin_insert.css">
     <link rel="stylesheet" href="../CSS/Main/header.css">
     <link rel="stylesheet" href="../CSS/Main/footer.css">
-    <link rel="stylesheet" href="../CSS/Body/About_Us.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-
 </head>
 
 <body>
@@ -50,7 +73,6 @@ $username = $_SESSION['username'];
             </div>
         </nav>
     </header>
-    <br>
 
     <div class="dropdown_menu" id="dropdownMenu">
         <ul class="nav-links">
@@ -68,76 +90,35 @@ $username = $_SESSION['username'];
         </ul>
     </div>
 
+    <h1>Admin Package Insert</h1>
 
-    <div class="section">
-        <div class="container">
-            <div class="image-section">
-                <img src="../Images/Body/About_Us_img/car.jpg" alt="">
-            </div>
-            <div class="content-section">
-                <div class="title">
-                    <h1>About us</h1>
-                    <div class="header"></div>
-                </div>
+    <div class="insert">
+        <!-- <button class="back button"> go back</button> -->
+        <form action="admin_insert.php" method="post" enctype="multipart/form-data">
 
-                <div class="content">
-                    <h3>Your Road to <span class="Heading3">Safe Driving</span></h3>
-                    <p>Welcome to our driving learners' community! We're passionate about helping you embark on a
-                        journey to become a safe and confident driver. <br><br>
-                        <b>Our Mission:</b> Our mission is simple yet profound – to empower aspiring drivers like you
-                        with the knowledge, skills, and confidence needed to navigate the roads safely. <br>
-                        We believe that responsible and skilled drivers are the foundation of road safety.<br><br>
+            <label for="package_name">Package Name:</label>
+            <input type="text" id="package_name" name="package_name" required><br>
 
-                        <span id="dots">...</span> <span id="invisible-text"><b>Who We Are:</b> We are a team of
-                            experienced driving instructors, road safety enthusiasts, and technology experts. <br>
-                            Our collective expertise spans decades, and we're committed to bringing you the best
-                            resources to ace your driving journey.<br><Br>
-                            <b>Why Choose Us:</b><br><Br>
-                            -<b>Expert Guidance:</b> Our team of certified instructors brings a wealth of knowledge to
-                            your driving education.
-                            We're here to guide you through every step of the process, from obtaining your learner's
-                            permit to acing your driving test.<br><br>
+            <label for="description"> Description:</label>
+            <input type="text" id="description" name="description" required><br>
 
-                            -<b>Comprehensive Resources:</b> We offer a range of comprehensive learning materials, from
-                            interactive online courses to practical driving tips and guides.
-                            Our goal is to make your learning experience engaging and effective.<br><Br>
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" required><br>
 
-                            - <b>Safety First:</b> We prioritize safety above all else. We're dedicated to instilling
-                            safe driving habits and practices that will keep you, your passengers, and fellow road users
-                            safe.<br><Br>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" required><br>
 
-                            - <b>Community Support:</b> We understand that learning to drive can be a daunting
-                            experience. That's why we've built a supportive community where you can connect with other
-                            learners, share experiences, and get answers to your questions.
-                        </span>
-                    </p>
-                    <button id="btn" onclick="ReadMoreLess()">Read more</button>
+            <label for="category">vehicle_type Category:</label>
+            <select id="category" name="vehicle_type">
+                <option value="light">select</option>
+                <option value="light">Light</option>
+                <option value="heavy">Heavy</option>
+            </select><br>
 
-                </div>
-                <div class="social-icons">
-                    <a href="#"><img src="./Images for About Us/1.png" width="20px" height="20px"></a>
-                    <a href="#"><img src="./Images for About Us/2.png" width="20px" height="20px"></a>
-                    <a href="#"><img src="./Images for About Us/3.png" width="20px" height="20px"></a>
-                </div>
-            </div>
-        </div>
+            <button type="submit"> Add package</button>
+
+        </form>
     </div>
-    <script>
-        function ReadMoreLess() {
-            var dots = document.getElementById("dots");
-            var invisibletext = document.getElementById("invisible-text");
-            var btntext = document.getElementById("btn");
-            if (dots.style.display != "none") {
-                dots.style.display = "none"
-                invisibletext.style.display = "inline"
-                btntext.innerHTML = "Read Less"
-            } else {
-                dots.style.display = "inline"
-                invisibletext.style.display = "none"
-                btntext.innerHTML = "Read More"
-            }
-        }
-    </script>
 
     <!-- footer -->
     <footer class="footer-distributed">
@@ -195,10 +176,9 @@ $username = $_SESSION['username'];
             </div>
 
         </div>
-
-
-        <script src="../JS/Main/header.js"></script>
     </footer>
+
+    <script src="../JS/Main/header.js"></script>
 </body>
 
 </html>

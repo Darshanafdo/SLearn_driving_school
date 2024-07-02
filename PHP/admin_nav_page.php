@@ -24,7 +24,6 @@ $username = $_SESSION['username'];
     <link rel="stylesheet" href="../CSS/Main/header.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="../JS/Main/header.js"></script>
 </head>
 
 <body>
@@ -80,27 +79,28 @@ $username = $_SESSION['username'];
 
         <div class="link">
             <div class="nav_box1">
-                <a href="../PHP/admin_insert.php">create package</a>
+
+                <a href="./package_insert.php"><i class="fas fa-plus-square"></i> &nbsp; create package</a>
             </div>
 
             <div class="nav_box1">
-                <a href="../PHP/admin_manage.php">Package_manage</a>
+                <a href="./admin_manage.php"> <i class="fas fa-tasks"></i> &nbsp; Package_manage</a>
             </div>
 
             <div class="nav_box1">
-                <a href="../php/insert_instructor.php"> Instructors</a>
+                <a href="#"> <i class="fas fa-user-plus"></i> &nbsp; Instructors</a>
             </div>
 
             <div class=" nav_box1">
-                <a href="../php/schedule_time.php"> schedule times </a>
+                <a href="#"> <i class="fas fa-calendar-alt"></i> &nbsp; schedule times </a>
             </div>
 
             <div class="nav_box1">
-                <a href="../PHP/test_Schedule_Form.php"></a>schedule form</a>
+                <a href="#"></a> <i class="fas fa-calendar-alt"></i> &nbsp; schedule form</a>
             </div>
 
             <div class="nav_box1">
-                <a href="../PHP/dashboard.php"> dashboard </a>
+                <a href="#"> <i class="fas fa-chart-line"></i> &nbsp; dashboard </a>
             </div>
 
             <div class="nav_box1">
@@ -169,6 +169,7 @@ $username = $_SESSION['username'];
         </div>
     </footer>
 
+    <script src="../JS/Main/header.js"></script>
 
 </body>
 
