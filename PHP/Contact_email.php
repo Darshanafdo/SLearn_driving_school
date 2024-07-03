@@ -2,8 +2,8 @@
 
 include("../pages/contact_us.html");
 
-use phpmailer\PHPMailer\PHPMailer;
-use phpmailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
@@ -17,31 +17,72 @@ if (isset($_POST['submit'])) {
     $message = $_POST['message'];
 
     $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'slearndschool@gmail.com';
-    $mail->Password = '';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port = 465;
+    try {
+        // email sent settings
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'slearndschool@gmail.com';
+        $mail->Password = ''; // email 2step verification must this passkey create.
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
 
-    // $mail->SMTPDebug = 2; // or 3 for more detailed logging
-    // $mail->Debugoutput = 'html';
+        // Recipients
+        $mail->setFrom('slearndschool@gmail.com', 'SlearnD School');
+        $mail->addAddress($email);
+        $mail->addReplyTo('no-reply@slearndschool.com', 'No Reply');
 
-    $mail->isHTML(true);
-    $mail->setFrom($email, $name);
-    $mail->addAddress("$email");
-    $mail->Subject = ("$email ($subject)");
-    $mail->Body = $message;
-    $mail->send();
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
 
-    header("Location: contact_us.html");
+        // Email Body create(using html design)
+        $mailContent = "
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; }
+                    .container { width: 80%; margin: 0 auto; padding: 20px; }
+                    .header { background-color: #4CAF50; padding: 10px; text-align: center; color: white; }
+                    .content { margin-top: 20px; }
+                    .footer { margin-top: 20px; text-align: center; color: #777; }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <div class='header'>
+                        <h2>Contact Form Submission</h2>
+                    </div>
+                    <div class='content'>
+                        <p><strong>Name:</strong> $name</p>
+                        <p><strong>Email:</strong> $email</p>
+                        <p><strong>Subject:</strong> $subject</p>
+                        <p><strong>Message:</strong></p>
+                        <p>$message</p>
+                    </div>
+                    <div class='footer'>
+                        <p>Thank you for reaching out to us. We will contact you.. Thanks you</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        ";
 
-    // connection eka hadanawa db ekata
+        $mail->Body = $mailContent;
+
+        $mail->send();
+
+        // Redirect to a thank you page or back to the contact form
+        header("Location: ./home.php");
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+
+    // Database connection and insertion
     $connection = mysqli_connect("localhost", "root", "", "slearn");
 
     if ($connection) {
-        echo " <h1> connection success </h1>";
+        echo "<h1>Connection success</h1>";
     } else {
         die("Not success");
     }
