@@ -45,22 +45,21 @@ $username = $_SESSION['username'];
             <div class="logo"><a href="header.html"><img src="../Images/Main/logo.png"></a>
             </div>
 
-            <ul class="nav-links">
+            < <ul class="nav-links">
                 <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
                 <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
                 <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
                 <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
-                <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-                <li><a class="action_btn" href="#"></i>
-                        <?php echo 'Hi ';
-                        echo htmlspecialchars($username); ?>
-                    </a></li>
-                <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
-            </ul>
+                <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+                <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
+                                                                echo htmlspecialchars($username); ?></a></li>
+                <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
+                </ul>
 
-            <div class="toggle_btn" id="toggleButton">
-                <i class="fa-solid fa-bars" id="toggleIcon"></i>
-            </div>
+
+                <div class="toggle_btn" id="toggleButton">
+                    <i class="fa-solid fa-bars" id="toggleIcon"></i>
+                </div>
         </nav>
     </header>
     <br>
@@ -73,13 +72,12 @@ $username = $_SESSION['username'];
                 <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
                 <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
                 <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
-                <li><a href="Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-                <li><a class="action_btn" href="#"></i>
-                        <?php echo 'Hi ';
-                        echo htmlspecialchars($username); ?>
-                    </a></li>
-                <li><a class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
+                <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+                <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
+                                                                echo htmlspecialchars($username); ?></a></li>
+                <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
             </ul>
+
         </div>
         <h1>Light Vehicle Packages</h1>
         <div>
@@ -175,7 +173,16 @@ $username = $_SESSION['username'];
 
         </footer>
 
-        <!-- methanin iwaraii  -->
+        <script>
+            document.getElementById('logoutBtn').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default link behavior
+                var userConfirmed = confirm("Are you sure you want to logout of this website?");
+                if (userConfirmed) {
+                    // If the user confirms, proceed to the logout page
+                    window.location.href = 'logout.php';
+                } // Otherwise, do nothing and stay on the page
+            });
+        </script>
 
 
     </body>

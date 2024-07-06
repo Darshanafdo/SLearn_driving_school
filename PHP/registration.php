@@ -86,6 +86,6 @@ function sendWelcomeEmail($email, $username)
         echo '<div style="padding: 15px; width: 500px; <center> background-color: #4CAF50; color: white; border-radius: 5px;">Welcome email has been sent successfully.</center></div>';
     } catch (Exception $e) {
         // Display an error message with styling
-        echo '<div style="padding: 15px; background-color: #f44336; color: white; border-radius: 5px;"> width: 500px; <center> Message could not be sent. </center> Mailer Error: ' . $mail->ErrorInfo . '</div>';
+        echo '<div style="padding: 15px; background-color: #f44336; color: white; width: 500px; border-radius: 5px;">  <center> Message could not be sent. </center> Mailer Error: ' . $mail->ErrorInfo . '</div>';
     }
 }
