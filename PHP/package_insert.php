@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "INSERT INTO packages (package_name,description, price, image, vehicle_type) VALUES ('$package_name','$description', '$price', '$image', '$vehicle_type')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New package added successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -41,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Admin Package Insert</title>
-    <link rel="stylesheet" href="../CSS/Body/admin_insert.css">
+    <link rel="stylesheet" href="../CSS/Body/package_insert.css">
     <link rel="stylesheet" href="../CSS/Main/header.css">
     <link rel="stylesheet" href="../CSS/Main/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -92,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="insert">
         <!-- <button class="back button"> go back</button> -->
-        <form action="admin_insert.php" method="post" enctype="multipart/form-data">
+        <form action="./package_insert.php" method="post" enctype="multipart/form-data">
 
             <label for="package_name">Package Name:</label>
             <input type="text" id="package_name" name="package_name" required><br>

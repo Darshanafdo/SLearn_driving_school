@@ -19,3 +19,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
+
+
+CREATE TABLE IF NOT EXISTS `packages` (
+  `id` int NOT NULL AUTO_INCREMENT,                
+  `package_name` varchar(255) NOT NULL,           
+  `description` varchar(255) DEFAULT NULL,         
+  `price` decimal(10,2) NOT NULL,                  
+  `image` longblob NOT NULL,                       
+  `vehicle_type` varchar(50) NOT NULL,             
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP, -
+  PRIMARY KEY (`id`)                               
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+COMMIT;
+

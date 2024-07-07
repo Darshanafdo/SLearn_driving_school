@@ -25,8 +25,8 @@ h1 {
 
 .package img {
   padding-top: 10px;
-  max-width: 100%;
-  height: auto;
+  width: 180px;
+  height: 120px;
 }
 p {
   padding: 10px;

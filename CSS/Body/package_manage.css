@@ -1,0 +1,50 @@
+h1 {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.packages {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  background: #e2e2e2;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #e2e1e1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label,
+input,
+select {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 2px;
+}
+
+button {
+  align-items: center;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #555;
+}

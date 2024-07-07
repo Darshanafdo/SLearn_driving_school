@@ -85,27 +85,27 @@ $username = $_SESSION['username'];
             </div>
 
             <div class="nav_box1">
-                <a href="#"> <i class="fas fa-user-plus"></i> &nbsp; Instructors</a>
+                <a href="#"> <i class="fas fa-user-plus"></i> &nbsp; Add Instructors</a>
             </div>
 
             <div class=" nav_box1">
-                <a href="#"> <i class="fas fa-calendar-alt"></i> &nbsp; schedule times </a>
+                <a href="#"> <i class="fas fa-calendar-alt"></i> &nbsp; manage Instructors </a>
             </div>
 
             <div class="nav_box1">
-                <a href="#"></a> <i class="fas fa-calendar-alt"></i> &nbsp; schedule form</a>
+                <a href="#"> <i class="fas fa-calendar-alt"></i> &nbsp; Add schedule time </a>
             </div>
 
             <div class="nav_box1">
-                <a href="#"> <i class="fas fa-chart-line"></i> &nbsp; dashboard </a>
+                <a href="#"> <i class="fas fa-chart-line"></i> &nbsp; Manage schedule time </a>
             </div>
 
             <div class="nav_box1">
-                <a href="#"> student create </a>
+                <a href="#"> submit Schedule list </a>
             </div>
 
             <div class="nav_box1">
-                <a href="#"> student create </a>
+                <a href="#"> dashboard </a>
             </div>
 
             <div class="nav_box1">
