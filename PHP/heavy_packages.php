@@ -67,8 +67,10 @@ $result = $conn->query($sql);
             while ($row = $result->fetch_assoc()) {
                 echo "<div class='package'>";
                 echo "<h2>" . $row['package_name'] . "</h2>";
-                echo "<p>Price: Rs." . $row['price'] . "</p>";
+                echo "<h4> <i>" . $row['description'] . "</h4></i>";
                 echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
+                echo "<p>Price: Rs." . $row['price'] . "</p>";
+                echo "<a href='./vehicle-form page.php'><button class='selectbutton'> Select Package  </button></a>";
                 echo "</div>";
             }
         } else {

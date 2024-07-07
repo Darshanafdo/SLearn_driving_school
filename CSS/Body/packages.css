@@ -1,62 +1,49 @@
-/* h1 {
+h1 {
+  align-items: center;
   text-align: center;
-  padding: 20px;
-  background-color: #333;
-  color: #fff;
-} */
-
-form {
-  width: 300px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
-
-label,
-input,
-select {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-button {
-  padding: 10px;
-  background: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #555;
-}
-
 .packages {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
+  background: #e2e2e2;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
 }
 
 .package {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   background: #fff;
   padding: 20px;
   margin: 10px;
-  width: 200px;
+  width: 260px;
   text-align: center;
+  border-radius: 10px;
 }
 
 .package img {
+  padding-top: 10px;
   max-width: 100%;
   height: auto;
 }
+p {
+  padding: 10px;
+}
+h4 {
+  padding-top: 10px;
+  text-transform: lowercase;
+}
 
-.div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.selectbutton {
+  align-items: center;
+  border: 5px;
+  background: #8ca2e0;
+  width: 120px;
+  border-radius: 10px;
+  border: none;
+  padding: 8px;
+  color: rgb(0, 0, 0);
+  border: black;
 }

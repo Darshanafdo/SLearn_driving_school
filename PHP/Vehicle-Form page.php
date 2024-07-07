@@ -1,250 +1,209 @@
 <?php
-session_start();
+// Database connection
+$host = 'localhost';
+$dbname = 'slearn';
+$username = 'root';
+$password = '';
 
-if (!isset($_SESSION['username'])) {
-  header("Location: index.php");
-  exit();
+try {
+  $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+  die("Could not connect to the database: " . $e->getMessage());
 }
 
-$username = $_SESSION['username'];
-?>
+// Fetch packages from the database
+$packagesQuery = $pdo->query("SELECT * FROM packages ORDER BY package_name");
+$packages = $packagesQuery->fetchAll(PDO::FETCH_ASSOC);
 
+// Form submission handling
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = $_POST['name'];
+  $nameWithInitial = $_POST['name_with_initial'];
+  $nic = $_POST['nic'];
+  $dob = $_POST['dob'];
+  $gender = $_POST['gender'];
+  $address = $_POST['address'];
+  $contactNumber = $_POST['contact_number'];
+  $whatsappNumber = $_POST['whatsapp_number'];
+  $email = $_POST['email'];
+  $vehicleType = $_POST['vehicle_type'];
+  $packageId = $_POST['package'];
+  $licenseIssueDate = $_POST['license_issue_date'];
+  $agree = isset($_POST['agree']);
+
+  // Validate driving license issue date (at least 2 years old)
+  $licenseIssueTimestamp = strtotime($licenseIssueDate);
+  $twoYearsAgo = strtotime('-2 years');
+  if ($licenseIssueTimestamp > $twoYearsAgo) {
+    $error = "The driving license must be issued at least 2 years ago.";
+  } else {
+    // Process the form data (e.g., save to database)
+    // You can add your own logic here, like saving user data
+    echo "Form submitted successfully!";
+  }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../CSS/Main/footer.css">
-  <link rel="stylesheet" href="../CSS/Main/header.css">
-  <link rel="stylesheet" href="../CSS/Body/vehicle-form.css">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driving School Registration Form</title>
+  <style>
+    /* Add your modern form styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
 
-  <title>Vehicle Form</title>
+    .form-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      box-sizing: border-box;
+    }
+
+    .form-container h2 {
+      margin-top: 0;
+    }
+
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-container button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-container button.clear {
+      background-color: #6c757d;
+      margin-left: 10px;
+    }
+
+    .form-container button:hover {
+      opacity: 0.9;
+    }
+
+    .form-container .error {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 15px;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="form-container">
+    <h2>Driving School Registration Form</h2>
+    <?php if (isset($error)) : ?>
+      <p class="error"><?= $error ?></p>
+    <?php endif; ?>
+    <form method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
 
-  <!-- html for header -->
-  <header>
-    <nav class="nav">
-      <div class="logo"><a href="header.html"><img src="../Images/Main/logo.png"></a>
-      </div>
+      <label for="name_with_initial">Name with Initial</label>
+      <input type="text" id="name_with_initial" name="name_with_initial" required>
 
-      <ul class="nav-links">
-        <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
-        <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
-        <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
-        <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
-        <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-        <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
-                                                        echo htmlspecialchars($username); ?></a></li>
-        <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
-      </ul>
+      <label for="nic">NIC</label>
+      <input type="text" id="nic" name="nic" required>
 
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
 
-      <div class="toggle_btn" id="toggleButton">
-        <i class="fa-solid fa-bars" id="toggleIcon"></i>
-      </div>
-    </nav>
-  </header>
+      <label>Gender</label>
+      <select name="gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
 
-  <br>
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
 
-  <!-- navigation dropdown menu -->
-  <div class="dropdown_menu" id="dropdownMenu">
-    <ul class="nav-links">
-      <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
-      <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
-      <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
-      <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
-      <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
-      <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
-                                                      echo htmlspecialchars($username); ?></a></li>
-      <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
-    </ul>
+      <label for="contact_number">Contact Number</label>
+      <input type="tel" id="contact_number" name="contact_number" required>
 
+      <label for="whatsapp_number">WhatsApp Number</label>
+      <input type="tel" id="whatsapp_number" name="whatsapp_number">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="vehicle_type">Vehicle Type</label>
+      <select id="vehicle_type" name="vehicle_type" required>
+        <option value="">Select Vehicle Type</option>
+        <option value="Auto">Auto</option>
+        <option value="Manual">Manual</option>
+      </select>
+
+      <label for="package">Select a Package</label>
+      <select id="package" name="package" required>
+        <option value="">Select Package</option>
+        <?php foreach ($packages as $package) : ?>
+          <option value="<?= $package['id'] ?>" data-price="<?= $package['price'] ?>" data-vehicle-type="<?= $package['vehicle_type'] ?>">
+            <?= $package['package_name'] ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
+
+      <label for="price">Price</label>
+      <input type="text" id="price" name="price" readonly>
+
+      <label for="license_issue_date">Driving License Issue Date</label>
+      <input type="date" id="license_issue_date" name="license_issue_date" required>
+
+      <label>
+        <input type="checkbox" name="agree" required> I agree to the privacy policy
+      </label>
+
+      <button type="submit">Submit</button>
+      <button type="reset" class="clear">Clear</button>
+    </form>
   </div>
-
-
-  <!-- html for vehicle form -->
-
-
-  <h1>Detail Form for Categeroy Package Selecting</h1>
-  <div class="border"></div>
-
-  <div class="main">
-    <div class="wrapper">
-      <div class="title">
-        DETAIL FORM
-      </div>
-
-      <form class="form" action="" method="post">
-        <div class="inputfield">
-          <label>Full Name</label>
-          <input type="text" class="input" autocomplete="off" required>
-        </div>
-
-        <div class="inputfield">
-          <label>NIC</label>
-          <input type="text" class="input" autocomplete="off" required>
-        </div>
-
-        <div class="inputfield">
-          <label>DOB</label>
-          <input type="text" class="input" autocomplete="off" required>
-        </div>
-
-        <div class="inputfield">
-          <label>Contact No</label>
-          <input type="text" class="input" autocomplete="off" required>
-        </div>
-
-        <div class="inputfield">
-          <label>Address</label>
-          <textarea class="textarea" autocomplete="off" required></textarea>
-        </div>
-
-        <div class="inputfield">
-          <label>Email Address</label>
-          <input type="text" class="input" autocomplete="off" required>
-        </div>
-
-        <div class="inputfield">
-          <label>Gender</label>
-          <div class="custom_select">
-            <select>
-              <option value="">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="inputfield">
-          <label>Vehicle Type</label>
-          <div class="custom_select">
-            <select>
-              <option value="">Select</option>
-              <option value="auto">Auto</option>
-              <option value="manual">Manual</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="inputfield">
-          <label>Categeroy Package</label>
-          <div class="custom_select">
-            <select>
-              <!-- dropdown eka watwnna one php aken(db ake thiyana table aken thama methanata drop down eka enna one.) -->
-              <option value="">Select</option>
-              <option value="full package">Full Package(Car,Bike,Threeweel)</option>
-              <option value="full package">Full Package(Bus,Lorry,Tipper)</option>
-              <option value="car">Car</option>
-              <option value="bike">Bike</option>
-              <option value="weel">Threeweel</option>
-              <option value="car,bike">Car,Bike</option>
-              <option value="car,weel">Car,Threeweel</option>
-              <option value="bike,weel">Bike,Threeweel</option>
-              <option value="bus">Bus</option>
-              <option value="lorry">Lorry</option>
-              <option value="tipper">Tipper</option>
-              <option value="bus,lorry">Bus,Lorry</option>
-              <option value="bus,tipper">Bus,Tipper</option>
-              <option value="lorry,tipper">Lorry,Tipper</option>
-              <option value="another">other</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="inputfield">
-          <label>Package Price</label>
-          <input type="text" class="input" autocomplete="off" required>
-        </div>
-
-        <div class="inputfield terms">
-          <label class="check">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-          </label>
-          <p>Agreed to terms and conditions</p>
-        </div>
-
-        <div class="inputfield">
-          <input type="submit" value="Registration & Ready to Pay" class="btn" required>
-          <input type="reset" value="Clear" class="btn" required>
-        </div>
-
-      </form>
-    </div>
-  </div>
-
-  <!-- html for footer -->
-  <footer class="footer-distributed">
-    <div class="footer-left">
-      <h3>SL<span>earn</span></h3>
-
-      <p class="footer-links">
-        <a href="#" class="link-1">Home</a>
-        <a href="#"> About </a>
-        <a href="#"> Contact us </a>
-      </p>
-
-      <p class="footer-company-name"> SLearn © 2023 </p>
-    </div>
-
-
-    <div class="footer-center">
-      <div>
-        <i class="fa fa-map-marker"></i>
-        <p><span> Sri Lanka College of Technology</span> Olcott Mawatha, Colombo - 10 </p>
-      </div>
-
-      <div>
-        <i class="fa fa-phone"></i>
-        <p>+947108528520</p>
-      </div>
-
-      <div>
-        <i class="fa fa-envelope"></i>
-        <p><a href="mailto:support@company.com">SLearnschool@gamil.com</a></p>
-      </div>
-    </div>
-
-    <div class="footer-right">
-      <p class="footer-company-about">
-        <span>About the company</span>
-        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit,
-        eu auctor lacus
-        vehicula sit amet.
-      </p>
-
-      <div class="footer-icons">
-        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-      </div>
-    </div>
-
-  </footer>
 
   <script>
-    document.getElementById('logoutBtn').addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent the default link behavior
-      var userConfirmed = confirm("Are you sure you want to logout of this website?");
-      if (userConfirmed) {
-        // If the user confirms, proceed to the logout page
-        window.location.href = 'logout.php';
-      } // Otherwise, do nothing and stay on the page
+    // JavaScript to update price based on selected package
+    document.getElementById('package').addEventListener('change', function() {
+      var selectedOption = this.options[this.selectedIndex];
+      var price = selectedOption.getAttribute('data-price');
+      document.getElementById('price').value = price;
     });
   </script>
-
-  <!-- link javascript file -->
-  <script src="./java scripts/header.js"></script>
-
 </body>
 
 </html>

@@ -76,14 +76,15 @@ $username = $_SESSION['username'];
             <h2>Light Vehicle Driving License</h2>
             <img class="image" src="../Images/Body/package/intdr-thumb.jpg" alt="image">
             <br>
-            <button type="button"> <a href="../PHP/light_packages.php">Packages</a></button>
+            <a href="../PHP/light_packages.php"><button type="button">Packages</button></a>
         </div>
 
         <div class="vehicle_package">
             <h2>Heavy Vehicle Driving License</h2>
             <img class="image" src="../Images/Body/package/intdr-thumb.jpg" alt="image">
             <br>
-            <button type="button"> <a href="../PHP/heavy_packages.php">Packages</a></button>
+            <a href="../PHP/heavy_packages.php"><button type="button">Packages</button></a>
+
         </div>
     </div>
 

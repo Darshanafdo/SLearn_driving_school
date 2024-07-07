@@ -79,7 +79,7 @@ $username = $_SESSION['username'];
             </ul>
 
         </div>
-        <h1>Light Vehicle Packages</h1>
+        <h1> - Light Vehicle Packages -</h1>
         <div>
             <div class="packages">
                 <?php
@@ -88,8 +88,9 @@ $username = $_SESSION['username'];
                         echo "<div class='package'>";
                         echo "<h2>" . $row['package_name'] . "</h2>";
                         echo "<h4>" . $row['description'] . "</h4>";
-                        echo "<p>Price: Rs." . $row['price'] . "</p>";
                         echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
+                        echo "<p> <b>Price: Rs." . $row['price'] . "</b></p>";
+                        echo "<a href='./vehicle-form page.php'><button class='selectbutton'> Select Package  </button></a>";
                         echo "</div>";
                     }
                 } else {
@@ -116,16 +117,6 @@ $username = $_SESSION['username'];
                     <a href="#"> About </a>
 
                     <a href="#"> Contact us </a>
-
-
-
-                    <!-- me comment tikath copy karala ganna. -->
-
-                    <!-- <a href="#"> Login </a>
-       
-       <a href="#"> ...... </a>
-       
-       <a href="#"> ..... </a> -->
                 </p>
 
                 <p class="footer-company-name"> SLearn © 2023 </p>
