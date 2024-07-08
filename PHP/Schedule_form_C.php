@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+
+
 // Composer autoload file link (if using Composer for PHPMailer)
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
@@ -60,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;           // Enable SMTP authentication
                 $mail->Username = 'slearndschool@gmail.com'; // SMTP username
-                $mail->Password = 'vtby xugc wndz yfuu'; // SMTP password
+                $mail->Password = ''; // SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
                 $mail->Port = 587; // TCP port to connect to
 
@@ -116,6 +127,12 @@ $mysqli->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Schedule Booking Form</title>
     <link rel="stylesheet" href="../css/Body/schedule_booking.css">
+    <link rel="stylesheet" href="../CSS/Main/header.css">
+    <link rel="stylesheet" href="../CSS/Main/footer.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const genderSelect = document.getElementById('gender');
@@ -163,6 +180,49 @@ $mysqli->close();
 </head>
 
 <body>
+
+    <!-- header eka  -->
+    <header>
+        <nav class="nav">
+
+            <div class="logo"><a href="#"><img src="../Images/Main/logo.png"></a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+                <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+                <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+                <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+                <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+                <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
+                                                                echo htmlspecialchars($username); ?></a></li>
+                <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
+            </ul>
+
+
+            <div class="toggle_btn" id="toggleButton">
+                <i class="fa-solid fa-bars" id="toggleIcon"></i>
+            </div>
+        </nav>
+    </header>
+    <br>
+
+    <div class="dropdown_menu" id="dropdownMenu">
+        <ul class="nav-links">
+            <li><a class="active" href="home.php"> <i class="uil uil-estate"></i> Home</a></li>
+            <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
+            <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
+            <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
+            <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+            <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
+                                                            echo htmlspecialchars($username); ?></a></li>
+            <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
+        </ul>
+
+    </div>
+
+
+
     <div class="container">
         <form id="bookingForm" method="post" action="">
             <h2>Schedule Booking Form</h2>
@@ -178,12 +238,14 @@ $mysqli->close();
 
             <label for="gender">Gender:</label>
             <select id="gender" name="gender" required>
+                <option value="">Select Now</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
 
             <label for="schedule_time">Schedule Booking Time:</label>
             <select id="schedule_time" name="schedule_time" required>
+                <option value="">Select Now</option>
                 <?php foreach ($schedules as $schedule) : ?>
                     <option value="<?= $schedule['id']; ?>"><?= $schedule['time_slot']; ?></option>
                 <?php endforeach; ?>
@@ -203,10 +265,83 @@ $mysqli->close();
             </div>
 
             <?php if ($form_status) : ?>
-                <p class="status"><?= $form_status; ?></p>
+                <p style="text-align:center; color:green;"><?= $form_status; ?></p>
             <?php endif; ?>
         </form>
     </div>
+
+    <!-- footer eka -->
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>SL<span>earn</span></h3>
+
+            <p class="footer-links">
+                <a href="home.html" class="link-1">Home</a>
+
+                <a href="About_us.html"> About </a>
+
+                <a href="contact_us.html"> Contact us </a>
+            </p>
+
+            <p class="footer-company-name"> SLearn © 2023 </p>
+        </div>
+
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span> Sri Lanka College of Technology</span> Olcott Mawatha, Colombo - 10 </p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+947108528520</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">SLearnschool@gamil.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit,
+                eu auctor lacus
+                vehicula sit amet.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            var userConfirmed = confirm("Are you sure you want to logout of this website?");
+            if (userConfirmed) {
+                // If the user confirms, proceed to the logout page
+                window.location.href = 'logout.php';
+            } // Otherwise, do nothing and stay on the page
+        });
+    </script>
+
+    <script src="../JS/Main/header.js"></script>
 </body>
 
 </html>
