@@ -1,82 +1,59 @@
-/* styles.css */
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 .form-container {
-  background-color: #fff;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  background-color: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-  margin: 20px;
+  width: 80%;
 }
 
-h2 {
-  text-align: center;
-  color: #333;
+.form-container h2 {
+  margin-top: 0;
 }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-  color: #555;
-}
-
-input,
-select,
-textarea {
-  width: 100%;
+.form-container input,
+.form-container select,
+.form-container textarea {
   padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
-textarea {
-  resize: vertical;
+.form-container label {
+  display: grid;
+  margin-bottom: 5px;
 }
 
-.buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
+.form-container button {
   background-color: #007bff;
-  color: #fff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.form-container button.clear {
+  background-color: #6c757d;
+  margin-left: 10px;
 }
 
-@media (max-width: 500px) {
+.form-container button:hover {
+  opacity: 0.9;
+}
+
+.form-container .error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
   .form-container {
     padding: 15px;
-  }
-
-  input,
-  select,
-  textarea {
-    padding: 8px;
-  }
-
-  button {
-    padding: 8px 16px;
+    width: 100%;
   }
 }

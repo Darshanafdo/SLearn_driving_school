@@ -52,78 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Driving School Registration Form</title>
-  <style>
-    /* Add your modern form styles here */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-
-    .form-container {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 600px;
-      box-sizing: border-box;
-    }
-
-    .form-container h2 {
-      margin-top: 0;
-    }
-
-    .form-container input,
-    .form-container select,
-    .form-container textarea {
-      width: calc(100% - 22px);
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-
-    .form-container label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .form-container button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .form-container button.clear {
-      background-color: #6c757d;
-      margin-left: 10px;
-    }
-
-    .form-container button:hover {
-      opacity: 0.9;
-    }
-
-    .form-container .error {
-      color: red;
-      margin-bottom: 10px;
-    }
-
-    /* Responsive design */
-    @media (max-width: 600px) {
-      .form-container {
-        padding: 15px;
-        width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="../CSS/Body/vehicle-form.css">
 </head>
 
 <body>

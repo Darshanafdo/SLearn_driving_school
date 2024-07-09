@@ -9,17 +9,13 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Admin_Nav </title>
-
-    <!-- add css (link pages) -->
-    <link rel="stylesheet" href="../CSS/Body/admin_nav.css">
+    <title>Student Registration</title>
     <link rel="stylesheet" href="../CSS/Main/footer.css">
     <link rel="stylesheet" href="../CSS/Main/header.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -27,7 +23,7 @@ $username = $_SESSION['username'];
 </head>
 
 <body>
-    <!-- header eka -->
+
     <header>
         <nav class="nav">
             <div class="logo"><a href="#"><img src="../Images/Main/logo.png"></a>
@@ -65,39 +61,17 @@ $username = $_SESSION['username'];
 
     </div>
 
+    <h2>Student Registration</h2>
 
-    <div class="navi_box">
-        <h1>- Admin Panel -</h1>
-
-        <div class="link">
-            <div class="nav_box1">
-
-                <a href="./package_insert.php"><i class="fas fa-plus-square"></i> &nbsp; create package</a>
-            </div>
-
-            <div class="nav_box1">
-                <a href="./admin_manage.php"> <i class="fas fa-tasks"></i> &nbsp; Package_manage</a>
-            </div>
-
-            <div class="nav_box1">
-                <a href="./instructor_manage.php"> <i class="fas fa-user-plus"></i> &nbsp; manage Instructors</a>
-            </div>
-
-            <div class=" nav_box1">
-                <a href="./schedule_time_manage.php"> <i class="fas fa-calendar-alt"></i> &nbsp; Manage schedule time </a>
-            </div>
-
-            <div class="nav_box1">
-                <a href="#"> dashboard </a>
-            </div>
-
-            <div class="nav_box1">
-                <a href="./Student_registration.php"> student create </a>
-            </div>
-        </div>
-    </div>
-
-
+    <form action="./student_register.php" method="POST">
+        <label for="student_name">Student Name:</label><br>
+        <input type="text" id="student_name" name="student_name" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="re_password">Re-enter Password:</label><br>
+        <input type="password" id="re_password" name="re_password" required><br><br>
+        <input type="submit" value="Register">
+    </form>
 
     <!-- footer eka -->
     <footer class="footer-distributed">

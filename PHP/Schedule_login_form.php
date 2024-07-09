@@ -40,7 +40,7 @@ $username = $_SESSION['username'];
         <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
         <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
         <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
-        <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+        <li><a href="#"><i class="uil uil-calendar-alt"></i> schedule</a></li>
         <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
                                                         echo htmlspecialchars($username); ?></a></li>
         <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
@@ -62,7 +62,7 @@ $username = $_SESSION['username'];
       <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
       <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
       <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
-      <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+      <li><a href="#"><i class="uil uil-calendar-alt"></i> schedule</a></li>
       <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
                                                       echo htmlspecialchars($username); ?></a></li>
       <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
@@ -79,10 +79,10 @@ $username = $_SESSION['username'];
   <div class="container">
     <div class="box">
       <header>LOGIN FORM</header>
-      <form action="" method="post">
+      <form action="./student_login.php" method="post">
         <div class="field input">
           <label for="email">Username</label>
-          <input type="text" name="Student Name" id="Student Name" autocomplete="off" required>
+          <input type="text" name="student_name" id="Student Name" autocomplete="off" required>
         </div>
 
         <div class="field input">

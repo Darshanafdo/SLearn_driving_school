@@ -1,38 +1,58 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-if (isset($_POST['submit'])) {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Payment Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-$full_name = $_POST['full_name'];
-$email = $_POST['email'];
-$Address = $_POST['Address'];
-$City = $_POST['City'];
-$State = $_POST['State'];
-$zip_code = $_POST['zip_code'];
-$name_of_card = $_POST['name_of_card'];
-$cread_card_number = $_POST['cread_card_number'];
-$Exp_Month = $_POST['Exp_Month'];
-$ExpYear = $_POST['ExpYear'];
-$CVV = $_POST['CVV'];
+<body>
+    <div class="container">
+        <!-- Billing Address -->
+        <div class="row">
+            <div class="col">
+                <h3 class="title">Billing Address</h3>
+                <div class="inputBox">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                <!-- Other address fields (email, city, state, zip) -->
+            </div>
 
+            <!-- Payment Details -->
+            <div class="col">
+                <h3 class="title">Card Accepted:</h3>
+                <img src="cards.png" alt="credit/debit card image">
+                <div class="inputBox">
+                    <label for="cardName">Name On Card:</label>
+                    <input type="text" id="cardName" placeholder="Enter card name" required>
+                </div>
+                <div class="inputBox">
+                    <label for="cardNum">Credit Card Number:</label>
+                    <input type="text" id="cardNum" placeholder="1111-2222-3333-4444" maxlength="19" required>
+                </div>
+                <!-- Other card details (expiry month, CVV) -->
+            </div>
+        </div>
 
-// connection eka hadanawa db ekata
-$connection = mysqli_connect ("localhost","root","","slearn");
+        <!-- Privacy Policy Agreement -->
+        <div class="inputBox">
+            <input type="checkbox" id="privacyAgreement" required>
+            <label for="privacyAgreement">I agree to the privacy policy</label>
+        </div>
 
-if($connection){
-    echo " <h1> connection success </h1>";
-}
-else{
-    die("Not success");
-}
+        <!-- Amount and Pay Button -->
+        <div class="inputBox">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" placeholder="Enter amount" required>
+        </div>
+        <button type="submit">Pay</button>
+    </div>
 
-$query = "INSERT INTO payment (full_name,email,Address,City,State,zip_code,name_of_card,cread_card_number,Exp_Month,ExpYear,CVV) VALUES ('$full_name','$email','$Address','$City','$State','$zip_code','$name_of_card','$cread_card_number','$Exp_Month','$ExpYear','$CVV')";
+    <!-- Include your JavaScript logic (splitting card number, etc.) in index.js -->
+    <script src="index.js"></script>
+</body>
 
-$result = mysqli_query($connection, $query);
-
-if(!$result){
-    die('Query Failed' . mysqli_error($connection));
-}
-
-}
-
-?>
+</html>

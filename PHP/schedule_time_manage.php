@@ -10,16 +10,72 @@ $username = $_SESSION['username'];
 ?>
 
 
+<?php
+// Database connection parameters
+$host = 'localhost';
+$db = 'slearn';
+$user = 'root';
+$pass = '';
+
+// Create a MySQLi connection
+$mysqli = new mysqli($host, $user, $pass, $db);
+
+// Check the connection
+if ($mysqli->connect_error) {
+    die('Connection failed: ' . $mysqli->connect_error);
+}
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'];
+    $id = isset($_POST['id']) ? $_POST['id'] : '';
+    $time_slot = isset($_POST['time_slot']) ? $_POST['time_slot'] : '';
+
+    if ($action === 'insert') {
+        $insert_query = "INSERT INTO schedule (time_slot) VALUES (?)";
+        if ($stmt = $mysqli->prepare($insert_query)) {
+            $stmt->bind_param('s', $time_slot);
+            $stmt->execute();
+            $stmt->close();
+        }
+    } elseif ($action === 'update') {
+        $update_query = "UPDATE schedule SET time_slot = ? WHERE id = ?";
+        if ($stmt = $mysqli->prepare($update_query)) {
+            $stmt->bind_param('si', $time_slot, $id);
+            $stmt->execute();
+            $stmt->close();
+        }
+    } elseif ($action === 'delete') {
+        $delete_query = "DELETE FROM schedule WHERE id = ?";
+        if ($stmt = $mysqli->prepare($delete_query)) {
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $stmt->close();
+        }
+    }
+}
+
+// Fetch schedule times
+$schedules = [];
+$fetch_query = "SELECT * FROM schedule";
+if ($result = $mysqli->query($fetch_query)) {
+    while ($row = $result->fetch_assoc()) {
+        $schedules[] = $row;
+    }
+    $result->free();
+}
+
+$mysqli->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Admin_Nav </title>
-
-    <!-- add css (link pages) -->
-    <link rel="stylesheet" href="../CSS/Body/admin_nav.css">
+    <title>Manage Schedule</title>
+    <link rel="stylesheet" href="../css/Body/schedule_time_manage.css">
     <link rel="stylesheet" href="../CSS/Main/footer.css">
     <link rel="stylesheet" href="../CSS/Main/header.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -27,7 +83,7 @@ $username = $_SESSION['username'];
 </head>
 
 <body>
-    <!-- header eka -->
+
     <header>
         <nav class="nav">
             <div class="logo"><a href="#"><img src="../Images/Main/logo.png"></a>
@@ -65,39 +121,59 @@ $username = $_SESSION['username'];
 
     </div>
 
+    <div class="container">
+        <h2>Manage Schedule</h2>
+        <form id="scheduleForm" method="post" action="./schedule_time_manage.php">
+            <input type="hidden" name="id" id="id">
 
-    <div class="navi_box">
-        <h1>- Admin Panel -</h1>
+            <label for="time_slot">Time Slot:</label>
+            <input type="text" id="time_slot" name="time_slot" required>
 
-        <div class="link">
-            <div class="nav_box1">
+            <input type="hidden" name="action" id="action" value="insert">
+            <button type="submit">Save</button>
+            <button type="button" onclick="clearForm()">Clear</button>
+        </form>
 
-                <a href="./package_insert.php"><i class="fas fa-plus-square"></i> &nbsp; create package</a>
-            </div>
-
-            <div class="nav_box1">
-                <a href="./admin_manage.php"> <i class="fas fa-tasks"></i> &nbsp; Package_manage</a>
-            </div>
-
-            <div class="nav_box1">
-                <a href="./instructor_manage.php"> <i class="fas fa-user-plus"></i> &nbsp; manage Instructors</a>
-            </div>
-
-            <div class=" nav_box1">
-                <a href="./schedule_time_manage.php"> <i class="fas fa-calendar-alt"></i> &nbsp; Manage schedule time </a>
-            </div>
-
-            <div class="nav_box1">
-                <a href="#"> dashboard </a>
-            </div>
-
-            <div class="nav_box1">
-                <a href="./Student_registration.php"> student create </a>
-            </div>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Time Slot</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($schedules as $schedule) : ?>
+                    <tr>
+                        <td><?= $schedule['id']; ?></td>
+                        <td><?= $schedule['time_slot']; ?></td>
+                        <td>
+                            <button onclick="editSchedule(<?= htmlspecialchars(json_encode($schedule), ENT_QUOTES, 'UTF-8'); ?>)">Edit</button>
+                            <form method="post" action="" style="display:inline;">
+                                <input type="hidden" name="id" value="<?= $schedule['id']; ?>">
+                                <input type="hidden" name="action" value="delete">
+                                <button type="submit" onclick="return confirm('Are you sure you want to delete this time slot?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
+    <script>
+        function editSchedule(schedule) {
+            document.getElementById('id').value = schedule.id;
+            document.getElementById('time_slot').value = schedule.time_slot;
+            document.getElementById('action').value = 'update';
+        }
 
+        function clearForm() {
+            document.getElementById('id').value = '';
+            document.getElementById('time_slot').value = '';
+            document.getElementById('action').value = 'insert';
+        }
+    </script>
 
     <!-- footer eka -->
     <footer class="footer-distributed">
