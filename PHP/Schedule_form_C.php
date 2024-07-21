@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;           // Enable SMTP authentication
                 $mail->Username = 'slearndschool@gmail.com'; // SMTP username
-                $mail->Password = ''; // SMTP password
+                $mail->Password = 'vtby xugc wndz yfuu'; // SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
                 $mail->Port = 587; // TCP port to connect to
 
@@ -243,6 +243,11 @@ $mysqli->close();
                 <option value="female">Female</option>
             </select>
 
+            <label for="instructor">Choose Instructor:</label>
+            <select id="instructor" name="instructor" required>
+                <!-- Options will be populated based on the gender -->
+            </select>
+
             <label for="schedule_time">Schedule Booking Time:</label>
             <select id="schedule_time" name="schedule_time" required>
                 <option value="">Select Now</option>
@@ -254,10 +259,7 @@ $mysqli->close();
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="date" min="<?= date('Y-m-d'); ?>" required>
 
-            <label for="instructor">Choose Instructor:</label>
-            <select id="instructor" name="instructor" required>
-                <!-- Options will be populated based on the gender -->
-            </select>
+
 
             <div class="form-actions">
                 <button type="button" id="clearBtn">Clear</button>

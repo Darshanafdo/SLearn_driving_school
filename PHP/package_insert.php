@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "INSERT INTO packages (package_name,description, price, image, vehicle_type) VALUES ('$package_name','$description', '$price', '$image', '$vehicle_type')";
 
     if ($conn->query($sql) === TRUE) {
+        echo 'Successfully submitted';
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

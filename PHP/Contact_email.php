@@ -23,7 +23,8 @@ if (isset($_POST['submit'])) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'slearndschool@gmail.com';
-        $mail->Password = ''; // email 2step verification must this passkey create.
+        $mail->Password = 'vtby xugc wndz yfuu
+'; // email 2step verification must this passkey create.
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 

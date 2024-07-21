@@ -1,5 +1,5 @@
 <?php
-// Composer autoload file link(must link this file)
+// Composer autoload file link (must link this file)
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';  // Adjust the path as needed
@@ -7,7 +7,6 @@ require 'PHPMailer-master/src/SMTP.php';  // Adjust the path as needed
 // Include PHPMailer classes (if needed, but usually autoload handles this)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 
 $host = 'localhost';
 $db = 'slearn';
@@ -49,7 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Send welcome email
         sendWelcomeEmail($email, $username);
 
-        echo '<div style="padding: 15px; background-color: #4CAF50; color: white; border-radius: 5px;">Registration successful! A welcome email has been sent.</div>';
+        // Redirect to home page after successful registration
+        header('Location:S_login.html');
+        exit;
     } catch (PDOException $e) {
         echo '<div style="padding: 15px; background-color: #f44336; color: white; border-radius: 5px;">Error: ' . $e->getMessage() . '</div>';
     }
@@ -67,7 +68,7 @@ function sendWelcomeEmail($email, $username)
         $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;            // Enable SMTP authentication
         $mail->Username = 'slearndschool@gmail.com';  // SMTP username
-        $mail->Password = '';     // SMTP password
+        $mail->Password = 'vtby xugc wndz yfuu';     // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Enable TLS encryption, `PHPMailer::ENCRYPTION_SMTPS` also accepted
         $mail->Port = 587;  // TCP port to connect to
 
@@ -83,9 +84,9 @@ function sendWelcomeEmail($email, $username)
         $mail->send();
 
         // Display a success message with styling
-        echo '<div style="padding: 15px; width: 500px; <center> background-color: #4CAF50; color: white; border-radius: 5px;">Welcome email has been sent successfully.</center></div>';
+        echo '<div style="padding: 15px; width: 500px; background-color: #4CAF50; color: white; border-radius: 5px;"><center>Welcome email has been sent successfully.</center></div>';
     } catch (Exception $e) {
         // Display an error message with styling
-        echo '<div style="padding: 15px; background-color: #f44336; color: white; width: 500px; border-radius: 5px;">  <center> Message could not be sent. </center> Mailer Error: ' . $mail->ErrorInfo . '</div>';
+        echo '<div style="padding: 15px; background-color: #f44336; color: white; width: 500px; border-radius: 5px;"><center>Message could not be sent.</center> Mailer Error: ' . $mail->ErrorInfo . '</div>';
     }
 }

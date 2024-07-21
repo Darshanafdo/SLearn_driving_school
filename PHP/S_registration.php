@@ -63,7 +63,7 @@
         <div class="container">
             <div class="box">
                 <header>REGISTRATION FORM</header>
-                <form action="../PHP/registration.php" method="post">
+                <form action="registration.php" method="post">
                     <div class="field input">
                         <label for="username">Username</label>
                         <input type="text" name="username" id="username" autocomplete="off" required>
@@ -81,8 +81,7 @@
 
                     <div class="field input">
                         <label for="confirm-password">Confirm Password</label>
-                        <input type="password" name="confirm_password" id="confirm-password" autocomplete="off"
-                            required>
+                        <input type="password" name="confirm_password" id="confirm-password" autocomplete="off" required>
                     </div>
 
                     <div class="field">

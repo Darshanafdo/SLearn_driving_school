@@ -37,7 +37,7 @@ $username = $_SESSION['username'];
                 <li><a href="./admin_manage.php"><i class="uil uil-comment-info"></i> Package manage</a></li>
                 <li><a href="./instructor_manage.php"><i class="uil uil-package"></i> Instructor Manage</a></li>
                 <li><a href="./schedule_time_manage.php"><i class="uil uil-phone-pause"></i> Schedule time Manage</a></li>
-                <li><a href="#"><i class="uil uil-calendar-alt"></i> Dashboard</a></li>
+                <li><a href="./A_view_contact_d.php"><i class="uil uil-calendar-alt"></i> User question view</a></li>
                 <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
                                                                 echo htmlspecialchars($username); ?></a></li>
                 <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
@@ -57,7 +57,7 @@ $username = $_SESSION['username'];
             <li><a href="./admin_manage.php"><i class="uil uil-comment-info"></i> Package manage</a></li>
             <li><a href="./instructor_manage.php"><i class="uil uil-package"></i> Instructor Manage</a></li>
             <li><a href="./schedule_time_manage.php"><i class="uil uil-phone-pause"></i> Schedule time Manage</a></li>
-            <li><a href="#"><i class="uil uil-calendar-alt"></i> Dashboard</a></li>
+            <li><a href="./A_view_contact_d.php"><i class="uil uil-calendar-alt"></i> User question view</a></li>
             <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
                                                             echo htmlspecialchars($username); ?></a></li>
             <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
@@ -88,7 +88,7 @@ $username = $_SESSION['username'];
             </div>
 
             <div class="nav_box1">
-                <a href="#"> dashboard </a>
+                <a href="A_view_contact_d.php"> User question view </a>
             </div>
 
             <div class="nav_box1">
