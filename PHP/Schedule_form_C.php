@@ -9,32 +9,28 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 
-
-
-// Composer autoload file link (if using Composer for PHPMailer)
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 
-// Include PHPMailer classes
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Database connection parameters
+// Database connection
 $host = 'localhost';
 $db = 'slearn';
 $user = 'root';
 $pass = '';
 
-// Create a MySQLi connection
+//connection
 $mysqli = new mysqli($host, $user, $pass, $db);
 
-// Check the connection
+//connection check
 if ($mysqli->connect_error) {
     die('Connection failed: ' . $mysqli->connect_error);
 }
 
-// Fetch schedule times
+// Fetch scheduletimes
 $schedules = [];
 $schedule_query = "SELECT id, time_slot FROM schedule";
 if ($schedule_result = $mysqli->query($schedule_query)) {
@@ -55,32 +51,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date = $_POST['date'];
     $instructor = $_POST['instructor'];
 
-    // Insert booking into database
+    // Insert 
     $insert_query = "INSERT INTO schedule_bookings (student_id, student_name, email, gender, schedule_time, date, instructor)
                      VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     if ($stmt = $mysqli->prepare($insert_query)) {
         $stmt->bind_param('ssssisi', $student_id, $student_name, $email, $gender, $schedule_time, $date, $instructor);
         if ($stmt->execute()) {
-            // Send confirmation email using PHPMailer
-            $mail = new PHPMailer(true); // Passing true enables exceptions
+
+            $mail = new PHPMailer(true);
 
             try {
-                // SMTP configuration
+
                 $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-                $mail->SMTPAuth = true;           // Enable SMTP authentication
-                $mail->Username = 'slearndschool@gmail.com'; // SMTP username
-                $mail->Password = 'vtby xugc wndz yfuu'; // SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-                $mail->Port = 587; // TCP port to connect to
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'slearndschool@gmail.com';
+                $mail->Password = 'vtby xugc wndz yfuu';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
 
-                // Sender and recipient
+
                 $mail->setFrom('no-reply@example.com', 'SLearn');
-                $mail->addAddress($email, $student_name); // Add a recipient
+                $mail->addAddress($email, $student_name);
 
-                // Email content
-                $mail->isHTML(false); // Set email format to plain text
+
+                $mail->isHTML(false);
                 $mail->Subject = 'Booking Confirmation';
                 $mail->Body    = "Dear $student_name,\n\nYour booking has been confirmed.\n\nDetails:\nStudent ID: $student_id\nSchedule Time: $schedule_time\nDate: $date\nInstructor: $instructor\n\nThank you!";
 
@@ -98,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Handle AJAX request for fetching instructors
+// fetching instructors
 if (isset($_GET['action']) && $_GET['action'] === 'fetch_instructors') {
     $gender = $_GET['gender'];
     $instructors = [];
@@ -173,7 +169,7 @@ $mysqli->close();
                 document.getElementById('bookingForm').reset();
             });
 
-            // Initial fetch based on the default gender
+            // select gender fetch 
             fetchInstructors();
         });
     </script>
@@ -245,7 +241,7 @@ $mysqli->close();
 
             <label for="instructor">Choose Instructor:</label>
             <select id="instructor" name="instructor" required>
-                <!-- Options will be populated based on the gender -->
+
             </select>
 
             <label for="schedule_time">Schedule Booking Time:</label>
@@ -334,12 +330,12 @@ $mysqli->close();
 
     <script>
         document.getElementById('logoutBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default link behavior
+            event.preventDefault(); // logout message
             var userConfirmed = confirm("Are you sure you want to logout of this website?");
             if (userConfirmed) {
-                // If the user confirms, proceed to the logout page
+                // login page
                 window.location.href = 'logout.php';
-            } // Otherwise, do nothing and stay on the page
+            }
         });
     </script>
 

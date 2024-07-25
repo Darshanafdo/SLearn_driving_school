@@ -2,9 +2,9 @@
 // Composer autoload file link (must link this file)
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
-require 'PHPMailer-master/src/SMTP.php';  // Adjust the path as needed
+require 'PHPMailer-master/src/SMTP.php';
 
-// Include PHPMailer classes (if needed, but usually autoload handles this)
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -20,7 +20,7 @@ try {
     die("Could not connect to the database: " . $e->getMessage());
 }
 
-// Registration handling
+// Registration eka
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = htmlspecialchars($_POST['username']);
     $email = htmlspecialchars($_POST['email']);
@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Hash the password
+    // password hash
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-    // Insert user into database
+    // Insert 
     try {
         $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         $stmt->execute([
@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':password' => $hashed_password,
         ]);
 
-        // Send welcome email
+        // Send email
         sendWelcomeEmail($email, $username);
 
-        // Redirect to home page after successful registration
+        // Redirect to login after successful registration (re check user)
         header('Location:S_login.html');
         exit;
     } catch (PDOException $e) {
@@ -56,37 +56,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Function to send a welcome email using PHPMailer
+// send email
 function sendWelcomeEmail($email, $username)
 {
     $mail = new PHPMailer(true);
 
     try {
-        // Server settings
-        $mail->SMTPDebug = 0;  // Enable verbose debug output
-        $mail->isSMTP();       // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;            // Enable SMTP authentication
-        $mail->Username = 'slearndschool@gmail.com';  // SMTP username
-        $mail->Password = 'vtby xugc wndz yfuu';     // SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Enable TLS encryption, `PHPMailer::ENCRYPTION_SMTPS` also accepted
-        $mail->Port = 587;  // TCP port to connect to
 
-        // Recipients
+        $mail->SMTPDebug = 0;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'slearndschool@gmail.com';
+        $mail->Password = 'vtby xugc wndz yfuu';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Enable TLS encryption, `PHPMailer::ENCRYPTION_SMTPS` also accepted
+        $mail->Port = 587;
+
+
         $mail->setFrom('no-reply@slearndriving.com', 'SLearn Driving School');
-        $mail->addAddress($email, $username);  // Add a recipient
+        $mail->addAddress($email, $username);
 
         // Content
-        $mail->isHTML(true);  // Set email format to HTML
+        $mail->isHTML(true);
         $mail->Subject = 'Welcome to SLearn Driving School!';
         $mail->Body    = "Hello $username,<br><br>Welcome to SLearn Driving School! thank you for choose our driving school.<br><br>Best Regards,<br>SLearn Team";
 
         $mail->send();
 
-        // Display a success message with styling
+        // Display  message 
         echo '<div style="padding: 15px; width: 500px; background-color: #4CAF50; color: white; border-radius: 5px;"><center>Welcome email has been sent successfully.</center></div>';
     } catch (Exception $e) {
-        // Display an error message with styling
+        // Display  message 
         echo '<div style="padding: 15px; background-color: #f44336; color: white; width: 500px; border-radius: 5px;"><center>Message could not be sent.</center> Mailer Error: ' . $mail->ErrorInfo . '</div>';
     }
 }

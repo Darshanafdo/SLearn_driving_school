@@ -91,7 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Admin Package Insert</h1>
 
     <div class="insert">
-        <!-- <button class="back button"> go back</button> -->
         <form action="./package_insert.php" method="post" enctype="multipart/form-data">
 
             <label for="package_name">Package Name:</label>
@@ -178,12 +177,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script>
         document.getElementById('logoutBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default link behavior
+            event.preventDefault(); // loout message
             var userConfirmed = confirm("Are you sure you want to logout of this website?");
             if (userConfirmed) {
-                // If the user confirms, proceed to the logout page
+                // logout page
                 window.location.href = 'logout.php';
-            } // Otherwise, do nothing and stay on the page
+            }
         });
     </script>
 

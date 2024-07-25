@@ -44,10 +44,10 @@
             </thead>
             <tbody>
                 <?php
-                // Include database connection
+                // db connection
                 include 'db.php';
 
-                // Handle form submission for adding a new instructor
+                // insert instructor
                 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
                     $name = $_POST['name'];
                     $nic = $_POST['nic'];
@@ -71,7 +71,7 @@
                     }
                 }
 
-                // Handle form submission for updating an instructor
+                // updating instructor
                 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
                     $id = $_POST['id'];
                     $name = $_POST['name'];
@@ -102,7 +102,7 @@
                     }
                 }
 
-                // Handle form submission for deleting an instructor
+                // delete instructor
                 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
                     $id = $_POST['id'];
 
@@ -117,7 +117,7 @@
                     }
                 }
 
-                // Fetch and display instructors from the database
+                // Fetch instructors 
                 $sql = "SELECT * FROM instructors";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
@@ -147,7 +147,7 @@
         </table>
     </div>
 
-    <!-- Update Instructor Form (hidden) -->
+    <!-- Update Instructor Form -->
     <div id="updateFormContainer" style="display: none;">
         <form id="updateForm" method="POST" action="index.php">
             <input type="hidden" name="id" required>

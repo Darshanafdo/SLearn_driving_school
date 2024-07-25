@@ -1,20 +1,20 @@
 <?php
-// Database configuration
+// Database config
 $servername = "localhost";
-$username = "root"; // Replace with your database username
-$password = ""; // Replace with your database password
-$dbname = "slearn"; // Replace with your database name
+$username = "root";
+$password = "";
+$dbname = "slearn";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+// Check 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form inputs
+    //form inputs
     $name = $_POST['name'];
     $initials = $_POST['initials'];
     $nic = $_POST['nic'];
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Prepare SQL statement to insert data
+    // insert data
     $stmt = $conn->prepare("INSERT INTO p_registrations (
         full_name, name_with_initials, nic, dob, gender, address,
         contact_number, whatsapp_number, email, vehicle_type,
@@ -72,8 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error: " . $stmt->error;
     }
-
-    // Close the statement and connection
     $stmt->close();
     $conn->close();
 }

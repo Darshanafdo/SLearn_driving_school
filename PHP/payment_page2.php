@@ -217,16 +217,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $mail = new PHPMailer(true);
         try {
-            // Server settings
+            // smtp settings(wenas karaganna)
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'slearndschool@gmail.com';
-            $mail->Password = 'vtby xugc wndz yfuu'; // email 2step verification must this passkey create.
+            $mail->Password = 'vtby xugc wndz yfuu';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 
-            // Recipients
+
             $mail->setFrom('slearndschool@gmail.com', 'Slearn driving School');
             $mail->addAddress($email);
             $mail->addReplyTo('no-reply@slearndschool.com', 'No Reply');

@@ -119,16 +119,6 @@
                     <a href="About_us.html"> About </a>
 
                     <a href="contact_us.html"> Contact us </a>
-
-
-
-                    <!-- me comment tikath copy karala ganna. -->
-
-                    <!-- <a href="#"> Login </a>
-            
-            <a href="#"> ...... </a>
-            
-            <a href="#"> ..... </a> -->
                 </p>
 
                 <p class="footer-company-name"> SLearn © 2023 </p>

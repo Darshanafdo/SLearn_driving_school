@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Check if the user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
     exit();
@@ -15,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle deletion of a package
+// delete package
 if (isset($_POST['delete'])) {
     $id = $_POST['id'];
     $stmt = $conn->prepare("DELETE FROM packages WHERE id = ?");
@@ -24,7 +23,7 @@ if (isset($_POST['delete'])) {
     $stmt->close();
 }
 
-// Handle update of a package
+// update package
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $package_name = $_POST['package_name'];
@@ -32,14 +31,14 @@ if (isset($_POST['update'])) {
     $price = $_POST['price'];
     $vehicle_type = $_POST['vehicle_type'];
 
-    // Check if a new image is uploaded
+    // image
     if (!empty($_FILES['image']['tmp_name']) && is_uploaded_file($_FILES['image']['tmp_name'])) {
-        // Ensure the file is an image and get its contents
+        // image
         $image = file_get_contents($_FILES['image']['tmp_name']);
-        // Escape special characters for SQL
+
         $image = addslashes($image);
 
-        // Update the package with the new image
+        // Update the package new image
         $stmt = $conn->prepare("UPDATE packages SET package_name = ?, description = ?, price = ?, image = ?, vehicle_type = ? WHERE id = ?");
         $stmt->bind_param("ssdssi", $package_name, $description, $price, $image, $vehicle_type, $id);
     } else {
@@ -48,7 +47,7 @@ if (isset($_POST['update'])) {
         $stmt->bind_param("ssdsi", $package_name, $description, $price, $vehicle_type, $id);
     }
 
-    // Execute the statement
+    // Execute 
     if ($stmt->execute()) {
         echo "Package updated successfully!";
     } else {
@@ -58,7 +57,7 @@ if (isset($_POST['update'])) {
     $stmt->close();
 }
 
-// Retrieve all packages from the database
+// Retrieve all packages db
 $sql = "SELECT * FROM packages";
 $result = $conn->query($sql);
 ?>
@@ -82,7 +81,7 @@ $result = $conn->query($sql);
     <div class="packages">
         <?php
         if ($result->num_rows > 0) {
-            // Output each package
+            // display package style eka
             while ($row = $result->fetch_assoc()) {
                 echo "<form action='admin_manage.php' method='post' enctype='multipart/form-data'>";
                 echo "<div class='package'>";
@@ -98,7 +97,7 @@ $result = $conn->query($sql);
 
                 echo "<label for='image'>Current Image:</label><br>";
                 if (!empty($row['image'])) {
-                    // Display the current image
+                    // image
                     echo "<img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' alt='Package Image' style='width: 100px; height: auto;'><br>";
                 } else {
                     echo "No image available<br>";

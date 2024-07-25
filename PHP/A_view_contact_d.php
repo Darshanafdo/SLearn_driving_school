@@ -1,19 +1,17 @@
 <?php
-// Database connection details
+// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "slearn";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// SQL query to fetch data from the contact table
+// SQL query contact details pennana eka
 $sql = "SELECT ID, name, email, subject, message, submittedAt FROM contact";
 $result = $conn->query($sql);
 ?>

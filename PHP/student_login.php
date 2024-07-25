@@ -15,12 +15,12 @@ if ($conn->connect_error) {
 
 // Form submission handling
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if student_name and password are set in the POST request
+    // Check if student_name and password
     if (isset($_POST['student_name']) && isset($_POST['password'])) {
         $student_name = $_POST['student_name'];
         $password = $_POST['password'];
 
-        // Fetch the student from the database
+        // Fetch the student
         $stmt = $conn->prepare("SELECT student_id, password FROM students WHERE student_name = ?");
         $stmt->bind_param("s", $student_name);
         $stmt->execute();

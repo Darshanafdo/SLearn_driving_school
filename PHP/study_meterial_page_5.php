@@ -41,7 +41,7 @@ $username = $_SESSION['username'];
         <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
         <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
         <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
-        <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+        <li><a href="./Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
         <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
                                                         echo htmlspecialchars($username); ?></a></li>
         <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
@@ -61,7 +61,7 @@ $username = $_SESSION['username'];
       <li><a href="About_us.php"><i class="uil uil-comment-info"></i> About us</a></li>
       <li><a href="Packages Details.php"><i class="uil uil-package"></i> Packages</a></li>
       <li><a href="contact_us.php"><i class="uil uil-phone-pause"></i> Contact</a></li>
-      <li><a href="Schedule_login_form.html"><i class="uil uil-calendar-alt"></i> schedule</a></li>
+      <li><a href="./Schedule_login_form.php"><i class="uil uil-calendar-alt"></i> schedule</a></li>
       <li><a class="action_btn" href="./profile.php"><?php echo 'Hi ';
                                                       echo htmlspecialchars($username); ?></a></li>
       <li><a id="logoutBtn" class="action_btn" href="logout.php">Logout <i class="uil uil-forward"></i></a></li>
@@ -195,12 +195,12 @@ $username = $_SESSION['username'];
   </footer>
   <script>
     document.getElementById('logoutBtn').addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent the default link behavior
+      event.preventDefault(); // logout message
       var userConfirmed = confirm("Are you sure you want to logout of this website?");
       if (userConfirmed) {
-        // If the user confirms, proceed to the logout page
+        // logout page
         window.location.href = 'logout.php';
-      } // Otherwise, do nothing and stay on the page
+      }
     });
   </script>
 

@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Function to generate the next student ID in the format s001, s002, etc.
+// generate the next student ID in the format s001, s002, etc.
 function generateStudentID($conn)
 {
     $result = $conn->query("SELECT student_id FROM students ORDER BY student_id DESC LIMIT 1");
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Generate new student ID
         $student_id = generateStudentID($conn);
 
-        // Insert data into the database
+        // Insert
         $stmt = $conn->prepare("INSERT INTO students (student_id, student_name, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $student_id, $student_name, $hashed_password);
 

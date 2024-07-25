@@ -18,17 +18,15 @@ if (isset($_POST['submit'])) {
 
     $mail = new PHPMailer(true);
     try {
-        // email sent settings
+        // email sent settings 
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'slearndschool@gmail.com';
-        $mail->Password = 'vtby xugc wndz yfuu
-'; // email 2step verification must this passkey create.
+        $mail->Password = 'vtby xugc wndz yfuu';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 
-        // Recipients
         $mail->setFrom('slearndschool@gmail.com', 'SlearnD School');
         $mail->addAddress($email);
         $mail->addReplyTo('no-reply@slearndschool.com', 'No Reply');
@@ -37,7 +35,7 @@ if (isset($_POST['submit'])) {
         $mail->isHTML(true);
         $mail->Subject = $subject;
 
-        // Email Body create(using html design)
+        // Email Bodya
         $mailContent = "
             <html>
             <head>
@@ -73,13 +71,13 @@ if (isset($_POST['submit'])) {
 
         $mail->send();
 
-        // Redirect to a thank you page or back to the contact form
+
         header("Location: ./home.php");
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 
-    // Database connection and insertion
+    // Database connection 
     $connection = mysqli_connect("localhost", "root", "", "slearn");
 
     if ($connection) {
@@ -87,7 +85,7 @@ if (isset($_POST['submit'])) {
     } else {
         die("Not success");
     }
-
+    //insert 
     $query = "INSERT INTO contact (name,email,subject,message) VALUES ('$name','$email','$subject','$message')";
 
     $result = mysqli_query($connection, $query);

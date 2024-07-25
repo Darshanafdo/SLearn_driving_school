@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <!-- Billing Address -->
+
         <div class="row">
             <div class="col">
                 <h3 class="title">Billing Address</h3>
@@ -18,10 +18,10 @@
                     <label for="name">Full Name:</label>
                     <input type="text" id="name" placeholder="Enter your full name" required>
                 </div>
-                <!-- Other address fields (email, city, state, zip) -->
+
             </div>
 
-            <!-- Payment Details -->
+
             <div class="col">
                 <h3 class="title">Card Accepted:</h3>
                 <img src="cards.png" alt="credit/debit card image">
@@ -33,17 +33,17 @@
                     <label for="cardNum">Credit Card Number:</label>
                     <input type="text" id="cardNum" placeholder="1111-2222-3333-4444" maxlength="19" required>
                 </div>
-                <!-- Other card details (expiry month, CVV) -->
+
             </div>
         </div>
 
-        <!-- Privacy Policy Agreement -->
+
         <div class="inputBox">
             <input type="checkbox" id="privacyAgreement" required>
             <label for="privacyAgreement">I agree to the privacy policy</label>
         </div>
 
-        <!-- Amount and Pay Button -->
+
         <div class="inputBox">
             <label for="amount">Amount:</label>
             <input type="number" id="amount" placeholder="Enter amount" required>
@@ -51,7 +51,7 @@
         <button type="submit">Pay</button>
     </div>
 
-    <!-- Include your JavaScript logic (splitting card number, etc.) in index.js -->
+
     <script src="index.js"></script>
 </body>
 

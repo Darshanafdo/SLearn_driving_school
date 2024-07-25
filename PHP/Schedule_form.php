@@ -107,9 +107,6 @@ $username = $_SESSION['username'];
           <input type="date" id="selectDate" name="selectDate" required>
         </div>
 
-
-
-        <!-- methana list eka db ake table akakain enna one. -->
         <div class="field select">
           <label for="instructors"> Select Instructors: </label>
           <select id="instructors" name="instructors">
@@ -197,12 +194,12 @@ $username = $_SESSION['username'];
 
   <script>
     document.getElementById('logoutBtn').addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent the default link behavior
+      event.preventDefault(); // loout message
       var userConfirmed = confirm("Are you sure you want to logout of this website?");
       if (userConfirmed) {
-        // If the user confirms, proceed to the logout page
+        // logout message
         window.location.href = 'logout.php';
-      } // Otherwise, do nothing and stay on the page
+      }
     });
   </script>
 

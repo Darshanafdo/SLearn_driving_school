@@ -2,7 +2,6 @@
 session_start();
 require 'config.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
@@ -17,7 +16,7 @@ $query->bind_result($username, $email, $created_at);
 $query->fetch();
 $query->close();
 
-// Handle form submission for updating data
+//  updating data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_username = $_POST['username'];
     $new_email = $_POST['email'];
@@ -28,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $update_query->execute();
     $update_query->close();
 
-    // Refresh page to see changes
-    header("Location: profile.php");
+    //reload page
+    header("Location: ./profile.php");
     exit;
 }
 ?>
@@ -41,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your updated CSS file -->
-    <!-- Including Google Fonts for better typography -->
+    <link rel="stylesheet" href="">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 

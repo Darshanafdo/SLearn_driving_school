@@ -23,7 +23,7 @@ try {
   die("Could not connect to the database: " . $e->getMessage());
 }
 
-// Fetch packages from the database
+// Fetch packages
 $packagesQuery = $pdo->query("SELECT * FROM packages ORDER BY package_name");
 $packages = $packagesQuery->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['price'] = $price;
     $_SESSION['email'] = $email; // Save email to session for use in the payment page
 
-    // Insert registration data into the database
+    // Insert registration data 
     $stmt = $pdo->prepare("INSERT INTO vehicle_registrations 
             (name, name_with_initial, nic, dob, gender, address, contact_number, whatsapp_number, email, vehicle_type, vehicle_category, package_id, price, license_issue_date, agree) 
             VALUES 
@@ -242,19 +242,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </footer>
 
-  <!-- JavaScript for logout confirmation -->
   <script>
     document.getElementById('logoutBtn').addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent the default link behavior
+      event.preventDefault(); // logout message
       var userConfirmed = confirm("Are you sure you want to logout of this website?");
       if (userConfirmed) {
-        // If the user confirms, proceed to the logout page
+        // logout page
         window.location.href = 'logout.php';
-      } // Otherwise, do nothing and stay on the page
+      }
     });
   </script>
 
-  <!-- Existing JavaScript -->
   <script src="../JS/Main/header.js"></script>
 
   <script>
