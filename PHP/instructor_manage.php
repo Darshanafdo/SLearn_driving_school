@@ -217,8 +217,8 @@ $mysqli->close();
         <div class="footer-right">
             <p class="footer-company-about">
                 <span>About the company</span>
-                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit,
-                eu auctor lacus vehicula sit amet.
+                Welcome to our driving learners' SLearn community! We're passionate about helping you embark on a
+                journey to become a safe and confident driver.
             </p>
             <div class="footer-icons">
                 <a href="https://www.google.com/" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
