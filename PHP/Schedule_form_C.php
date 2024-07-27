@@ -232,7 +232,7 @@ $mysqli->close();
             <label for="email">Email Address:</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="gender">Gender:</label>
+            <label for="gender"> Instructor Gender:</label>
             <select id="gender" name="gender" required>
                 <option value="">Select Now</option>
                 <option value="male">Male</option>

@@ -7,6 +7,9 @@ if (!isset($_SESSION['username'])) {
 }
 
 $username = $_SESSION['username'];
+$vehicleCategory = $_SESSION['vehicle_category'] ?? 'N/A';
+$package = $_SESSION['package'] ?? 'N/A';
+$price = $_SESSION['price'] ?? 'N/A';
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +81,6 @@ $username = $_SESSION['username'];
 </head>
 
 <body>
-
     <header>
         <nav class="nav">
             <div class="logo"><a href="#"><img src="../Images/Main/logo.png" alt="Logo"></a></div>
@@ -99,6 +101,9 @@ $username = $_SESSION['username'];
 
     <div class="payment-container">
         <h2>Secure Payment</h2>
+        <p>Vehicle Category: <?php echo htmlspecialchars($vehicleCategory); ?></p>
+        <p>Package: <?php echo htmlspecialchars($package); ?></p>
+        <p>Price: <?php echo htmlspecialchars($price); ?></p>
         <form action="./payment_page2.php" method="POST" id="payment-form">
             <label for="cardName">Name on Card</label>
             <input type="text" id="cardName" name="cardName" required>
@@ -179,80 +184,5 @@ $username = $_SESSION['username'];
     </script>
     <script src="../JS/Main/header.js"></script>
 </body>
-
-<?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'PHPMailer-master/src/Exception.php';
-require 'PHPMailer-master/src/PHPMailer.php';
-require 'PHPMailer-master/src/SMTP.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $servername = "localhost";
-    $usernam = "root";
-    $password = "";
-    $dbname = "slearn";
-
-    $conn = new mysqli($servername, $usernam, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $cardName = htmlspecialchars($_POST['cardName']);
-    $cardNumber = htmlspecialchars($_POST['cardNumber']);
-    $expMonth = htmlspecialchars($_POST['expMonth']);
-    $expYear = htmlspecialchars($_POST['expYear']);
-    $cvv = htmlspecialchars($_POST['cvv']);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-
-    $sql = "INSERT INTO payment_details (card_name, card_number, exp_month, exp_year, cvv) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $cardName, $cardNumber, $expMonth, $expYear, $cvv);
-
-    if ($stmt->execute()) {
-        echo "<p class='message'>Payment successful! An email has been sent to you.</p>";
-
-        $mail = new PHPMailer(true);
-        try {
-            // smtp settings(wenas karaganna)
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'slearndschool@gmail.com';
-            $mail->Password = 'vtby xugc wndz yfuu';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port = 465;
-
-
-            $mail->setFrom('slearndschool@gmail.com', 'Slearn driving School');
-            $mail->addAddress($email);
-            $mail->addReplyTo('no-reply@slearndschool.com', 'No Reply');
-
-            // Content
-            $mail->isHTML(true);
-            $mail->Subject = 'Payment Confirmation';
-            $mail->Body = "Dear $username,<br><br>Thank you for your payment. Here are your payment details:<br><br>";
-            $mail->Body .= "Card Name: $cardName<br>";
-            $mail->Body .= "price: $price<br>";
-            $mail->Body .= "Card Number: **** **** **** " . substr($cardNumber, -4) . "<br>";
-            $mail->Body .= "Expiration Date: $expMonth/$expYear<br><br>";
-            $mail->Body .= "Best regards,<br>Slearn Team";
-
-            $mail->send();
-            echo "<p class='message'>Email sent successfully.</p>";
-        } catch (Exception $e) {
-            echo "<p class='message' style='color: red;'>Failed to send email. Mailer Error: {$mail->ErrorInfo}</p>";
-        }
-    } else {
-        echo "<p class='message' style='color: red;'>Error: " . $sql . "<br>" . $conn->error . "</p>";
-    }
-
-    $stmt->close();
-    $conn->close();
-}
-?>
 
 </html>

@@ -105,13 +105,16 @@ $username = $_SESSION['username'];
       <img src="../Images/Body/study_material_img/S47.png" alt="1.png">
       <p id="A"> Pass onto right </p>
     </div>
-
   </div>
 
   <br>
   <br>
+  <center>
+    <div class="paper">
 
-  <div class="border"></div>
+      <a href="./Paper_download.php"> - Paper Download page - </a>
+    </div>
+  </center>
 
   <br>
   <center>

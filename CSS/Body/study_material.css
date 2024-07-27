@@ -41,12 +41,6 @@ h1 {
   color: #023047;
 }
 
-/* .pagination {
-    display: block;
-    align-items: center;
-    align-content: center;
-  }
-   */
 .pagination a {
   color: rgb(0, 0, 0);
   align-items: center;
@@ -69,6 +63,12 @@ h1 {
   viewport-fit: contain;
   align-content: center;
   justify-content: center;
-  /* display: grid; */
   width: 100%;
+}
+
+.paper {
+  font-size: medium;
+  background: #d6d3d3;
+  justify-content: center;
+  text-align: center;
 }

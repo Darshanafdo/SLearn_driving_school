@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
         $mail->send();
 
 
-        header("Location: ./home.php");
+        header("Location: ./contact_us.php");
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
@@ -80,17 +80,8 @@ if (isset($_POST['submit'])) {
     // Database connection 
     $connection = mysqli_connect("localhost", "root", "", "slearn");
 
-    if ($connection) {
-        echo "<h1>Connection success</h1>";
-    } else {
-        die("Not success");
-    }
     //insert 
     $query = "INSERT INTO contact (name,email,subject,message) VALUES ('$name','$email','$subject','$message')";
 
     $result = mysqli_query($connection, $query);
-
-    if (!$result) {
-        die('Query Failed' . mysqli_error($connection));
-    }
 }

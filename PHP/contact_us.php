@@ -75,7 +75,7 @@ $username = $_SESSION['username'];
 
                 <h1>Contact Us</h1>
                 <div class="formbox">
-                    <form action="Contact_email.php" method="post">
+                    <form action="./Contact_email.php" method="post">
                         <input name="name" type="text" class="short" placeholder="Name" onfocus="this.placeholder=''" onblur="this.placeholder='Name'" />
 
                         <input name="email" type="text" class="short" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder='Email'" />
@@ -176,8 +176,6 @@ $username = $_SESSION['username'];
             }
         });
     </script>
-
-
     <script src="../JS/Body/contact.js"></script>
     <script src="../JS/Main/header.js"></script>
 </body>

@@ -88,7 +88,7 @@ $username = $_SESSION['username'];
                                 training, we have options for everyone.
                                 Choose the package that suits you the best and kick-start your
                                 driving journey today!</p>
-                            <button class="button"><span><b><a href="./Our Packages.php">Our packages</a></b></span></button>
+                            <button class="button"><span><b><a href="./Packages Details.php">Our packages</a></b></span></button>
                         </div>
                     </div>
                 </div>
@@ -99,14 +99,14 @@ $username = $_SESSION['username'];
                     <div class="inner-box">
                         <div class="card-front">
                             <img src="../Images/Body/Home/driving-school2.jpg" alt="card_image">
-                            <span><b>OUR SERVICES</b></span>
+                            <span><b>Meterial</b></span>
                         </div>
                         <div class="card-back">
                             <p>Discover our comprehensive range of services designed to make your driving experience exceptional.
                                 From expert guidance to state-of-the-art facilities,
                                 we provide everything you need for a successful driving
                                 journey. Explore our services and drive with confidence!</p>
-                            <button class="button"><span><b><a href="./study_meterial_page_1.php">Our services</a></b></span></button>
+                            <button class="button"><span><b><a href="./study_meterial_page_1.php">Study_meterial</a></b></span></button>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@ $username = $_SESSION['username'];
                                 We understand your busy lifestyle, and
                                 that's why we offer convenient scheduling to fit your needs.
                                 Take control of your schedule and book your lessons now!</p>
-                            <button class="button"><span><b><a href="./study_meterial_page_1.php">Schedule</a></b></span></button>
+                            <button class="button"><span><b><a href="./Schedule_login_form.php">Schedule</a></b></span></button>
                         </div>
                     </div>
                 </div>
