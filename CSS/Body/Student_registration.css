@@ -1,0 +1,17 @@
+.container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  background: #a7a5a5;
+  width: 350px;
+  height: 250px;
+  border-radius: 20px;
+  padding-top: 20px;
+  margin-left: 500px;
+}
+
+h2 {
+  text-align: center;
+  margin: 30px;
+}

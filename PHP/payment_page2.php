@@ -7,9 +7,77 @@ if (!isset($_SESSION['username'])) {
 }
 
 $username = $_SESSION['username'];
-$vehicleCategory = $_SESSION['vehicle_category'] ?? 'N/A';
-$package = $_SESSION['package'] ?? 'N/A';
 $price = $_SESSION['price'] ?? 'N/A';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $cardName = $_POST['cardName'];
+    $cardNumber = $_POST['cardNumber'];
+    $expMonth = $_POST['expMonth'];
+    $expYear = $_POST['expYear'];
+    $cvv = $_POST['cvv'];
+    $email = $_POST['email'];
+
+    insertData($username,  $price, $cardName, $cardNumber, $expMonth, $expYear, $cvv, $email);
+    sendEmail($email, $username, $price);
+}
+
+function insertData($username,  $price, $cardName, $cardNumber, $expMonth, $expYear, $cvv, $email)
+{
+    // Database connection
+    $conn = new mysqli('localhost', 'root', '', 'slearn');
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Insert data
+    $stmt = $conn->prepare("INSERT INTO payments (username, price, card_name, card_number, exp_month, exp_year, cvv, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssss", $username, $price, $cardName, $cardNumber, $expMonth, $expYear, $cvv, $email);
+
+    if ($stmt->execute()) {
+        header('Location: ./home.php');
+    } else {
+        // echo "<p class='message'>Error saving payment details: " . $stmt->error . "</p>";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+
+function sendEmail($email, $username, $price)
+{
+    require 'PHPMailer-master/src/Exception.php';
+    require 'PHPMailer-master/src/PHPMailer.php';
+    require 'PHPMailer-master/src/SMTP.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer();
+    try {
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'slearndschool@gmail.com';
+        $mail->Password = 'vtby xugc wndz yfuu';
+        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        // Recipients
+        $mail->setFrom('slearndschool@gmail.com', 'SLearn');
+        $mail->addAddress($email, $username);
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'Payment Confirmation';
+        $mail->Body    = "Dear $username, <br><br>Thank you for your payment.<br>
+        Price: $price<br><br>Regards,<br>slearn school";
+
+        $mail->send();
+        // echo "<p class='message'>Email has been sent to $email!</p>";
+    } catch (Exception $e) {
+        // echo "<p class='message'>Email could not be sent. Mailer Error: {$mail->ErrorInfo}</p>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -101,10 +169,8 @@ $price = $_SESSION['price'] ?? 'N/A';
 
     <div class="payment-container">
         <h2>Secure Payment</h2>
-        <p>Vehicle Category: <?php echo htmlspecialchars($vehicleCategory); ?></p>
-        <p>Package: <?php echo htmlspecialchars($package); ?></p>
         <p>Price: <?php echo htmlspecialchars($price); ?></p>
-        <form action="./payment_page2.php" method="POST" id="payment-form">
+        <form action="" method="POST" id="payment-form">
             <label for="cardName">Name on Card</label>
             <input type="text" id="cardName" name="cardName" required>
 

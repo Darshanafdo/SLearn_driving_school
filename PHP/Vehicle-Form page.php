@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Save the price in session
     $_SESSION['price'] = $price;
-    $_SESSION['email'] = $email; // Save email to session for use in the payment page
+    $_SESSION['email'] = $email;
 
     // Insert registration data
     $stmt = mysqli_prepare($conn, "INSERT INTO vehicle_registrations 
@@ -128,14 +128,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       exit();
 
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
         //save to price and package 
-        $vehicleCategory = $_POST['vehicle_category'];
-        $package = $_POST['package'];
         $price = $_POST['price'];
 
         // Set session variables
-        $_SESSION['vehicle_category'] = $vehicleCategory;
-        $_SESSION['package'] = $package;
         $_SESSION['price'] = $price;
 
         // Redirect to payment page
@@ -186,6 +183,7 @@ mysqli_close($conn);
 
   <div class="form-container">
     <h2>Driving School Registration Form</h2>
+    <br>
     <?php if (isset($error)) : ?>
       <p class="error"><?= $error ?></p>
     <?php endif; ?>
@@ -204,6 +202,7 @@ mysqli_close($conn);
 
       <label for="gender">Gender</label>
       <select id="gender" name="gender" required>
+        <option value="select">select</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
       </select>
@@ -225,6 +224,7 @@ mysqli_close($conn);
 
       <label for="vehicle_category">Vehicle Category</label>
       <select id="vehicle_category" name="vehicle_category" required>
+        <option value="select">Select</option>
         <option value="Light">Light</option>
         <option value="Heavy">Heavy</option>
       </select>
@@ -232,6 +232,7 @@ mysqli_close($conn);
       <label for="package">Package</label>
       <select id="package" name="package" required>
         <?php foreach ($packages as $package) : ?>
+          <option value="select">Select</option>
           <option value="<?= $package['id'] ?>" data-price="<?= $package['price'] ?>"><?= $package['package_name'] ?></option>
         <?php endforeach; ?>
       </select>

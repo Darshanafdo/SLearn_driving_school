@@ -40,16 +40,98 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        .profile-wrapper {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .profile-card {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-header {
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            margin: 30px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        p {
+            margin: 5px 0 20px;
+            color: #666;
+        }
+
+        .profile-content {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .update-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .update-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
     <div class="profile-wrapper">
         <div class="profile-card">
             <div class="profile-header">
-                <img src="profile-pic.png" alt="User Avatar" class="profile-avatar">
+                <!-- <img src="profile-pic.png" alt="User Avatar" class="profile-avatar"> -->
                 <h2><?php echo htmlspecialchars($username); ?>'s Profile</h2>
                 <p>Manage your profile information below</p>
             </div>

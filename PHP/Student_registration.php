@@ -16,6 +16,7 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration</title>
+    <link rel="stylesheet" href="../CSS/Body/Student_registration.css">
     <link rel="stylesheet" href="../CSS/Main/footer.css">
     <link rel="stylesheet" href="../CSS/Main/header.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -63,16 +64,25 @@ $username = $_SESSION['username'];
 
     <h2>Student Registration</h2>
 
-    <form action="./student_register.php" method="POST">
-        <label for="student_name">Student Name:</label><br>
-        <input type="text" id="student_name" name="student_name" required><br><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <label for="re_password">Re-enter Password:</label><br>
-        <input type="password" id="re_password" name="re_password" required><br><br>
-        <input type="submit" value="Register">
-    </form>
 
+
+    <div class="container">
+        <form action="./student_register.php" method="POST">
+            <label for="student_name">Student Name:</label><br>
+            <input type="text" id="student_name" name="student_name" required><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+            <label for="re_password">Re-enter Password:</label><br>
+            <input type="password" id="re_password" name="re_password" required><br><br>
+            <input type="submit" value="Register">
+        </form>
+
+
+    </div>
+
+
+
+    <br><br>
     <!-- footer eka -->
     <footer class="footer-distributed">
 
